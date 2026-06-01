@@ -1,36 +1,9 @@
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, MessageSquare, Calendar, Phone } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Mail, MessageCircle } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-    toast.success("Message sent! We'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -42,176 +15,217 @@ export default function Contact() {
             Get In <span className="text-primary">Touch</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions? Want to discuss your project? We'd love to hear from you.
+            Have questions? Want to request a sample? We're here to help via WhatsApp or Telegram.
           </p>
         </div>
       </section>
 
       {/* Contact Section */}
       <section className="py-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold font-poppins text-foreground mb-8">
-                Send us a Message
-              </h2>
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-foreground text-center mb-12">
+            Reach Us On Your Preferred Platform
+          </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                    Your Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell us about your project or ask any questions..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
-                  size="lg"
+          <div className="space-y-8">
+            {/* Email */}
+            <div className="flex gap-4 p-6 bg-secondary rounded-lg border border-border">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Mail className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-bold text-foreground mb-1">Email</h3>
+                <a
+                  href="mailto:hello@polaclip.com"
+                  className="text-primary hover:text-primary/80 transition-colors"
                 >
-                  Send Message
-                </Button>
-              </form>
+                  hello@polaclip.com
+                </a>
+                <p className="text-sm text-muted-foreground mt-1">
+                  We'll respond within 24 hours
+                </p>
+              </div>
             </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <h2 className="text-3xl font-bold font-poppins text-foreground">
-                Other Ways to Reach Us
-              </h2>
-
-              {/* Email */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">Email</h3>
-                  <a
-                    href="mailto:hello@polaclip.com"
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    hello@polaclip.com
-                  </a>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    We'll respond within 24 hours
-                  </p>
-                </div>
+            {/* WhatsApp */}
+            <div className="flex gap-4 p-6 bg-secondary rounded-lg border border-border">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6 text-primary" />
               </div>
-
-              {/* WhatsApp */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MessageSquare className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">WhatsApp</h3>
-                  <a
-                    href="https://wa.me/1234567890"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    Message us on WhatsApp
-                  </a>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Quick questions? Chat with us directly
-                  </p>
-                </div>
-              </div>
-
-              {/* Calendly */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">Schedule a Call</h3>
-                  <a
-                    href="https://calendly.com/polaclip"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    Book a time on Calendly
-                  </a>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Let's discuss your project in detail
-                  </p>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">Phone</h3>
-                  <a
-                    href="tel:+1234567890"
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    +1 (234) 567-890
-                  </a>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Available Monday-Friday, 9am-5pm
-                  </p>
-                </div>
-              </div>
-
-              {/* FAQ Link */}
-              <div className="bg-secondary p-6 rounded-lg border border-border">
-                <h3 className="font-bold text-foreground mb-2">Frequently Asked Questions</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  Check out our How It Works page for answers to common questions about our process.
+              <div className="flex-1">
+                <h3 className="font-bold text-foreground mb-1">WhatsApp</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Chat with us directly for quick responses and sample requests
                 </p>
                 <a
-                  href="/how-it-works"
-                  className="text-primary hover:text-primary/80 font-semibold text-sm transition-colors"
+                  href="https://wa.me/1234567890?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary text-white hover:bg-primary/90 font-semibold py-2 px-4 rounded-lg transition-colors"
                 >
-                  View FAQs →
+                  <MessageCircle className="w-4 h-4" />
+                  Message on WhatsApp
                 </a>
               </div>
+            </div>
+
+            {/* Telegram */}
+            <div className="flex gap-4 p-6 bg-secondary rounded-lg border border-border">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6 text-primary" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-foreground mb-1">Telegram</h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Connect with us on Telegram for instant messaging and file sharing
+                </p>
+                <a
+                  href="https://t.me/polaclip?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-foreground text-white hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Message on Telegram
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Process Section */}
+      <section className="py-20 px-4 bg-secondary">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-foreground mb-8">
+            How to Request Your Sample
+          </h2>
+
+          <div className="space-y-6">
+            <div className="flex gap-4">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold">
+                  1
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-foreground mb-1">Contact Us</h3>
+                <p className="text-muted-foreground">
+                  Click WhatsApp or Telegram above and send us a message with your long video link or file.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold">
+                  2
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-foreground mb-1">Share Your Video</h3>
+                <p className="text-muted-foreground">
+                  Send us your YouTube/Facebook/Instagram link or upload your video via Google Drive or our secure link.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold">
+                  3
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-foreground mb-1">We Create Your Sample</h3>
+                <p className="text-muted-foreground">
+                  Our team will create 1 professional sample clip within 48 hours and deliver it via WhatsApp or Telegram.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold">
+                  4
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-foreground mb-1">Review & Decide</h3>
+                <p className="text-muted-foreground">
+                  Check the sample quality. If you love it, we'll discuss your package and payment options. If you want revisions, we'll adjust it.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold">
+                  5
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-foreground mb-1">Payment & Start</h3>
+                <p className="text-muted-foreground">
+                  Once satisfied, we'll send you payment details (crypto, Wise, Ko-fi). After payment, your subscription begins immediately.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-foreground text-center mb-12">
+            Common Questions
+          </h2>
+
+          <div className="space-y-6">
+            <div className="bg-secondary p-6 rounded-lg">
+              <h3 className="font-bold text-foreground mb-2">
+                Is there a cost for the sample?
+              </h3>
+              <p className="text-muted-foreground">
+                No! The sample is completely free. You only pay if you're satisfied and want to subscribe to one of our packages.
+              </p>
+            </div>
+
+            <div className="bg-secondary p-6 rounded-lg">
+              <h3 className="font-bold text-foreground mb-2">
+                How long does the sample take?
+              </h3>
+              <p className="text-muted-foreground">
+                We deliver samples within 48 hours. Most samples are ready within 24 hours.
+              </p>
+            </div>
+
+            <div className="bg-secondary p-6 rounded-lg">
+              <h3 className="font-bold text-foreground mb-2">
+                Can I request revisions to the sample?
+              </h3>
+              <p className="text-muted-foreground">
+                Absolutely! If you'd like adjustments to the sample, just let us know via WhatsApp or Telegram and we'll revise it.
+              </p>
+            </div>
+
+            <div className="bg-secondary p-6 rounded-lg">
+              <h3 className="font-bold text-foreground mb-2">
+                What payment methods do you accept?
+              </h3>
+              <p className="text-muted-foreground">
+                We accept cryptocurrency, Wise transfers, Ko-fi donations, and other payment methods. We'll discuss options that work best for you.
+              </p>
+            </div>
+
+            <div className="bg-secondary p-6 rounded-lg">
+              <h3 className="font-bold text-foreground mb-2">
+                Can I cancel after starting?
+              </h3>
+              <p className="text-muted-foreground">
+                Yes! You can cancel anytime after your first month. No long-term contracts or hidden fees.
+              </p>
             </div>
           </div>
         </div>
@@ -221,17 +235,31 @@ export default function Contact() {
       <section className="py-20 px-4 bg-gradient-to-r from-primary to-primary/80">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold font-poppins text-white mb-6">
-            Ready to transform your videos?
+            Ready to get started?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Let's get started on your first order today.
+            Request your free sample today and see what we can do for your videos.
           </p>
-          <a
-            href="/order"
-            className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors"
-          >
-            Order Now
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://wa.me/1234567890?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-white text-primary hover:bg-white/90 font-bold py-3 px-8 rounded-lg transition-colors"
+            >
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp Us
+            </a>
+            <a
+              href="https://t.me/polaclip?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-white/20 text-white hover:bg-white/30 font-bold py-3 px-8 rounded-lg transition-colors border border-white/50"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Telegram Us
+            </a>
+          </div>
         </div>
       </section>
 
@@ -240,15 +268,15 @@ export default function Contact() {
         <div className="container mx-auto text-center">
           <p className="mb-4">© 2026 Pola Clip. All rights reserved.</p>
           <div className="flex justify-center gap-6 text-sm">
-            <a href="/services" className="hover:text-primary transition-colors">
-              Services
-            </a>
-            <a href="/about" className="hover:text-primary transition-colors">
-              About
-            </a>
-            <a href="/" className="hover:text-primary transition-colors">
-              Home
-            </a>
+            <Link href="/">
+              <a className="hover:text-primary transition-colors">Home</a>
+            </Link>
+            <Link href="/#pricing">
+              <a className="hover:text-primary transition-colors">Pricing</a>
+            </Link>
+            <Link href="/about">
+              <a className="hover:text-primary transition-colors">About</a>
+            </Link>
           </div>
         </div>
       </footer>

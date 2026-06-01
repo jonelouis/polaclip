@@ -188,9 +188,9 @@ export default function HowItWorks() {
           <p className="text-xl text-white/90 mb-8">
             Let's transform your content into viral clips. First month is 20% off.
           </p>
-          <Link href="/order">
+          <Link href="/#pricing">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold">
-              Order Now
+              Request Your Sample
             </Button>
           </Link>
         </div>
@@ -201,14 +201,14 @@ export default function HowItWorks() {
         <div className="container mx-auto text-center">
           <p className="mb-4">© 2026 Pola Clip. All rights reserved.</p>
           <div className="flex justify-center gap-6 text-sm">
-            <Link href="/contact">
-              <a className="hover:text-primary transition-colors">Contact</a>
-            </Link>
-            <Link href="/services">
-              <a className="hover:text-primary transition-colors">Services</a>
-            </Link>
             <Link href="/">
               <a className="hover:text-primary transition-colors">Home</a>
+            </Link>
+            <Link href="/#pricing">
+              <a className="hover:text-primary transition-colors">Pricing</a>
+            </Link>
+            <Link href="/contact">
+              <a className="hover:text-primary transition-colors">Contact</a>
             </Link>
           </div>
         </div>

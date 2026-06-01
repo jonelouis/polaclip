@@ -8,9 +8,9 @@ export default function Navigation() {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/#pricing", label: "Pricing" },
     { href: "/how-it-works", label: "How It Works" },
     { href: "/portfolio", label: "Portfolio" },
-    { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
@@ -38,7 +38,7 @@ export default function Navigation() {
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Link href="/order">
+          <Link href="/#pricing">
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
               Get Started
             </Button>
@@ -69,7 +69,7 @@ export default function Navigation() {
                 </a>
               </Link>
             ))}
-            <Link href="/order">
+            <Link href="/#pricing">
               <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                 Get Started
               </Button>

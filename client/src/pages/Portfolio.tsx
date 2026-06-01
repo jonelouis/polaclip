@@ -136,10 +136,10 @@ export default function Portfolio() {
             Let's create viral clips from your videos and grow your audience.
           </p>
           <a
-            href="/order"
+            href="/#pricing"
             className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors"
           >
-            Get Started Today
+            Request Your Sample
           </a>
         </div>
       </section>
@@ -149,14 +149,14 @@ export default function Portfolio() {
         <div className="container mx-auto text-center">
           <p className="mb-4">© 2026 Pola Clip. All rights reserved.</p>
           <div className="flex justify-center gap-6 text-sm">
+            <a href="/" className="hover:text-primary transition-colors">
+              Home
+            </a>
+            <a href="/#pricing" className="hover:text-primary transition-colors">
+              Pricing
+            </a>
             <a href="/contact" className="hover:text-primary transition-colors">
               Contact
-            </a>
-            <a href="/about" className="hover:text-primary transition-colors">
-              About
-            </a>
-            <a href="/services" className="hover:text-primary transition-colors">
-              Services
             </a>
           </div>
         </div>
