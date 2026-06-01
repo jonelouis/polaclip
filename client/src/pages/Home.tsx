@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
-import { Play, Zap, Scissors, Rocket, MessageCircle } from "lucide-react";
+import { Play, Zap, Scissors, Rocket, MessageCircle, Mail } from "lucide-react";
 import { Check } from "lucide-react";
 
 export default function Home() {
@@ -112,6 +112,16 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+
+      {/* Prominent Free Sample Banner */}
+      <section className="bg-gradient-to-r from-primary to-primary/90 text-white py-4 px-4 mt-16">
+        <div className="container mx-auto text-center">
+          <p className="text-lg font-bold font-poppins flex items-center justify-center gap-2">
+            <span className="text-2xl">🎬</span>
+            Try Before You Buy — Request <span className="underline">FREE Sample Clip</span> from Your Video. No Payment. No Risk.
+          </p>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 bg-gradient-to-br from-white via-white to-secondary">
@@ -332,6 +342,13 @@ export default function Home() {
                     >
                       <MessageCircle className="w-5 h-5" />
                       Telegram Sample
+                    </a>
+                    <a
+                      href="mailto:hello@polaclip.com?subject=Sample%20Request%20-%20{pkg.name}%20Package&body=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample%20for%20the%20{pkg.name}%20package."
+                      className="w-full inline-flex items-center justify-center gap-2 bg-secondary text-primary hover:bg-secondary/80 font-bold py-3 px-4 rounded-lg transition-colors border border-primary"
+                    >
+                      <Mail className="w-5 h-5" />
+                      Email Sample Request
                     </a>
                   </div>
 
