@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pola Clip — Service Agreement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #ffffff;
+    --card: #ffffff;
+    --border: #e5e5e5;
+    --accent: #ff6b35;
+    --text: #1a1a1a;
+    --muted: #666666;
+    --success: #22c55e;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 28px 80px;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 36px;
+  }
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .tagline { color: var(--muted); font-size: 13px; }
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 24px 0 6px;
+    color: var(--text);
+  }
+  .doc-meta {
+    background: #f8f8f8;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    font-size: 14px;
+  }
+  .meta-row { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .meta-value {
+    color: var(--text);
+    font-weight: 500;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 4px;
+    min-height: 26px;
+  }
+  .section {
+    margin-bottom: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .section-head {
+    background: linear-gradient(90deg, rgba(255, 107, 53, 0.05), transparent);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.12);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    color: var(--accent);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .section-body { padding: 20px 22px; color: #4a4a4a; font-size: 14px; line-height: 1.8; }
+  .section-body ul { padding-left: 20px; margin: 8px 0; }
+  .section-body li { margin-bottom: 6px; }
+  .section-body strong { color: var(--text); font-weight: 600; }
+  .highlight {
+    background: rgba(255, 107, 53, 0.05);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #f8f8f8;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: #4a4a4a;
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--accent); }
+  .signature-block {
+    background: #f8f8f8;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-top: 36px;
+  }
+  .sig-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .sig-col h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+  .sig-field { margin-bottom: 16px; }
+  .sig-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .sig-line {
+    border-bottom: 1px dashed var(--border);
+    min-height: 32px;
+    padding-bottom: 4px;
+  }
+  .agreement-box {
+    background: rgba(34, 197, 94, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 28px 0 0;
+    font-size: 13px;
+    color: #22c55e;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 560px) {
+    .doc-meta { grid-template-columns: 1fr; }
+    .sig-grid { grid-template-columns: 1fr; }
+    .page { padding: 40px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo">Pola Clip</div>
+    <div class="tagline">A service of Pola IT · polaclip.com · hello@polaclip.com</div>
+    <h1>Service Agreement</h1>
+  </div>
+
+  <div class="doc-meta">
+    <div class="meta-row">
+      <span class="meta-label">Agreement Date</span>
+      <span class="meta-value" id="agreementDate"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Agreement Reference</span>
+      <span class="meta-value" id="refNum"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Client Name</span>
+      <span class="meta-value"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Client Email</span>
+      <span class="meta-value"></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <div class="section-title">Services Provided</div>
+    </div>
+    <div class="section-body">
+      Pola Clip agrees to deliver short-form video clips created from long-form video content provided by the Client, optimized for Instagram Reels, YouTube Shorts, Facebook Reels, and TikTok with captions and client branding applied.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <div class="section-title">Delivery Timeline</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Standard delivery:</strong> All clips will be delivered within <strong>48 hours</strong> of Pola Clip receiving the source video</li>
+        <li><strong>Revision delivery:</strong> Revised clips will be delivered within <strong>24 hours</strong> of receiving revision notes</li>
+        <li>Delivery is made via Google Drive or email link sent to the Client's registered email address</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <div class="section-title">Payment Terms</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Month 1:</strong> 100% of the monthly package fee is due in full before any work begins</li>
+        <li><strong>Month 2 onward:</strong> Invoice issued on the 1st of each month, payment due within <strong>15 days (Net-15)</strong></li>
+        <li><strong>Accepted payment methods:</strong> Binance Pay, Payoneer, Crypto, Wise</li>
+        <li><strong>Refund policy:</strong> No refunds are issued after clips have been delivered and approved</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <div class="section-title">Intellectual Property</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>The Client retains <strong>full ownership</strong> of all original video content and completed clips</li>
+        <li>Pola Clip retains the right to display completed clips as <strong>portfolio samples</strong> unless the Client requests otherwise in writing</li>
+        <li>The Client confirms they have all necessary rights and permissions for all content in their videos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">5</div>
+      <div class="section-title">Termination</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>Either party may terminate this agreement with <strong>30 days written notice</strong> via email</li>
+        <li>Upon termination, all outstanding invoices must be paid in full</li>
+        <li>Termination does not affect the Client's ownership of previously delivered clips</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="signature-block">
+    <div class="sig-title">Agreement Signatures</div>
+    <div class="sig-grid">
+      <div class="sig-col">
+        <h3>Client</h3>
+        <div class="sig-field">
+          <div class="sig-label">Signature</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Printed Name</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+      <div class="sig-col">
+        <h3>Pola Clip</h3>
+        <div class="sig-field">
+          <div class="sig-label">Signature</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Printed Name</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="agreement-box">
+    ✓ Both parties have read, understood, and agree to the terms outlined in this Service Agreement.
+  </div>
+
+  <div class="footer">
+    <p>Pola Clip Service Agreement | Last Updated: June 2026</p>
+    <p>For questions, contact <a href="mailto:hello@polaclip.com">hello@polaclip.com</a></p>
+  </div>
+
+</div>
+
+<script>
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('agreementDate').textContent = dateStr;
+  const refNum = 'PA-' + today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+  document.getElementById('refNum').textContent = refNum;
+</script>
+</body>
+</html>
