@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Your Free Sample Clip — Pola Clip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --card: #16161f;
+      --border: #2a2a3a;
+      --accent: #e8ff47;
+      --accent2: #7c3aed;
+      --text: #f0f0f5;
+      --muted: #8888aa;
+      --success: #22c55e;
+      --error: #ef4444;
+      --step-active: #e8ff47;
+      --step-done: #7c3aed;
+      --step-inactive: #2a2a3a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glow orb */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,255,71,0.08);
+      border: 1px solid rgba(232,255,71,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .logo-badge span { font-size: 16px; }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+      position: relative;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 28px;
+    }
+
+    .trust-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .pill {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      color: var(--success);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      animation: fadeDown 0.6s 0.1s ease both;
+    }
+
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      border: 2px solid var(--step-inactive);
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .step-circle.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0a0a0f;
+    }
+
+    .step-circle.done {
+      background: var(--step-done);
+      border-color: var(--step-done);
+      color: white;
+    }
+
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: var(--step-inactive);
+      transition: background 0.3s ease;
+      margin: 0 4px;
+    }
+
+    .step-line.done { background: var(--step-done); }
+
+    .step-labels {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .step-label {
+      flex: 1;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .step-label.active { color: var(--accent); font-weight: 600; }
+    .step-label.done { color: var(--step-done); }
+
+    /* ── Form Card ── */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+
+    .section-header {
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(232,255,71,0.05));
+      border-bottom: 1px solid var(--border);
+      padding: 24px 32px;
+    }
+
+    .section-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    /* ── Form Steps (pages) ── */
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+
+    .fields { padding: 28px 32px; display: flex; flex-direction: column; gap: 24px; }
+
+    /* ── Field ── */
+    .field { display: flex; flex-direction: column; gap: 8px; }
+
+    .field-label {
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .required { color: var(--accent); font-size: 12px; }
+    .optional { color: var(--muted); font-size: 12px; font-weight: 400; }
+
+    .field-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      background: rgba(255,255,255,0.03);
+      border-left: 2px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .field-desc code {
+      background: rgba(232,255,71,0.1);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    textarea,
+    select {
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      background: rgba(232,255,71,0.04);
+      box-shadow: 0 0 0 3px rgba(232,255,71,0.08);
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+
+    input.error, textarea.error, select.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+
+    .error-msg {
+      font-size: 12px;
+      color: var(--error);
+      display: none;
+    }
+
+    .error-msg.show { display: block; }
+
+    /* ── Radio & Checkbox ── */
+    .options { display: flex; flex-direction: column; gap: 8px; }
+
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .option-label:hover {
+      background: rgba(232,255,71,0.05);
+      border-color: rgba(232,255,71,0.3);
+    }
+
+    .option-label input[type="radio"],
+    .option-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      accent-color: var(--accent);
+      margin-top: 1px;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .option-label:has(input:checked) {
+      background: rgba(232,255,71,0.08);
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .option-text { flex: 1; }
+    .option-text strong { color: var(--accent); display: block; font-size: 13px; margin-bottom: 2px; }
+
+    /* ── Divider ── */
+    .field-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 4px 0;
+    }
+
+    /* ── Info Box ── */
+    .info-box {
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #c4b5fd;
+      line-height: 1.7;
+    }
+
+    .info-box .icon { font-size: 16px; margin-right: 6px; }
+
+    /* ── Highlight box ── */
+    .highlight-box {
+      background: rgba(232,255,71,0.06);
+      border: 1px solid rgba(232,255,71,0.2);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .highlight-box .hl-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    /* ── Navigation buttons ── */
+    .nav-bar {
+      padding: 20px 32px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0f;
+    }
+
+    .btn-primary:hover {
+      background: #f5ff70;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(232,255,71,0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--accent2), #9f1ef5);
+      color: white;
+      padding: 15px 36px;
+      font-size: 15px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* ── Package cards ── */
+    .package-cards { display: flex; flex-direction: column; gap: 10px; }
+
+    .pkg-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .pkg-card:hover {
+      border-color: rgba(232,255,71,0.4);
+      background: rgba(232,255,71,0.03);
+    }
+
+    .pkg-card:has(input:checked) {
+      border-color: var(--accent);
+      background: rgba(232,255,71,0.07);
+    }
+
+    .pkg-card input[type="radio"] {
+      width: 18px; height: 18px; min-width: 18px;
+      accent-color: var(--accent);
+      margin-top: 3px;
+      border: none; padding: 0; background: transparent;
+    }
+
+    .pkg-info { flex: 1; }
+
+    .pkg-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .pkg-detail {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pkg-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .pkg-price .new { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--accent); }
+    .pkg-price .old { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+    .pkg-price .badge {
+      display: inline-block;
+      background: rgba(232,255,71,0.15);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 100px;
+      margin-top: 3px;
+    }
+
+    .pkg-sample {
+      border-color: rgba(34,197,94,0.3);
+      background: rgba(34,197,94,0.04);
+    }
+
+    .pkg-sample:has(input:checked) {
+      border-color: var(--success);
+      background: rgba(34,197,94,0.08);
+    }
+
+    .pkg-sample .pkg-name { color: var(--success); }
+
+    /* ── Two-col grid on larger screens ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Step 5 (Success page) ── */
+    .success-page {
+      display: none;
+      text-align: center;
+      padding: 60px 32px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .success-page.show { display: block; }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(34,197,94,0.1);
+      border: 2px solid rgba(34,197,94,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 24px;
+    }
+
+    .success-page h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .success-page h2 span { color: var(--success); }
+
+    .success-page p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .next-steps {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+
+    .next-steps h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .next-step-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .next-step-item:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(232,255,71,0.12);
+      border: 1px solid rgba(232,255,71,0.3);
+      color: var(--accent);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Footer ── */
+    .footer-note {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+      animation: fadeUp 0.5s 0.3s ease both;
+    }
+
+    .footer-note a { color: var(--accent); text-decoration: none; }
+    .footer-note a:hover { text-decoration: underline; }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .fields { padding: 20px 18px; }
+      .section-header { padding: 18px 20px; }
+      .nav-bar { padding: 16px 18px 22px; }
+      .step-label { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-badge"><span>🎬</span> Pola Clip</div>
+      <h1>Get Your <em>Free</em> Sample Clip</h1>
+      <p class="subtitle">
+        Submit your long video and we'll turn it into 1 polished short clip —
+        Reels, Shorts &amp; TikTok ready. <strong style="color:var(--text)">You pay only if you love it.</strong>
+      </p>
+      <div class="trust-pills">
+        <span class="pill">✅ No Payment Required</span>
+        <span class="pill">✅ Delivered in 48 Hours</span>
+        <span class="pill">✅ Captions Included</span>
+        <span class="pill">✅ Keep the Clip Either Way</span>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar">
+      <div class="progress-steps">
+        <div class="step-item">
+          <div class="step-circle active" id="sc1">1</div>
+          <div class="step-line" id="sl1"></div>
+        </div>
+        <div class="step-item">
+          <div class="step-circle" id="sc2">2</div>
+          <div class="step-line" id="sl2"></div>
+        </div>
+        <div class="step-item">
+          <div class="step-circle" id="sc3">3</div>
+          <div class="step-line" id="sl3"></div>
+        </div>
+        <div class="step-item">
+          <div class="step-circle" id="sc4">4</div>
+          <div style="flex:1"></div>
+        </div>
+      </div>
+      <div class="step-labels">
+        <span class="step-label active" id="sl-label1">About You</span>
+        <span class="step-label" id="sl-label2">Your Video</span>
+        <span class="step-label" id="sl-label3">Style</span>
+        <span class="step-label" id="sl-label4">Package</span>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <!-- 
+      NETLIFY FORMS INSTRUCTIONS:
+      When you deploy to Netlify, the form below will automatically capture all submissions.
+      Netlify will send you an email notification for every new submission.
+      
+      To enable email notifications:
+        1. Go to your Netlify dashboard
+        2. Select your site → Forms → Form notifications
+        3. Add your email: hello@polaclip.com
+        
+      All submissions will also appear in:
+        Netlify Dashboard → Your Site → Forms → polaclip-intake
+    -->
+    <form
+      name="polaclip-intake"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      id="mainForm"
+      novalidate
+    >
+      <!-- Netlify hidden fields -->
+      <input type="hidden" name="form-name" value="polaclip-intake" />
+      <p style="display:none"><input name="bot-field" /></p>
+
+      <!-- ══════════════════════════════════════
+           STEP 1 — ABOUT YOU
+      ══════════════════════════════════════ -->
+      <div class="form-card form-step active" id="step1">
+        <div class="section-header">
+          <div class="section-tag">Step 1 of 4</div>
+          <div class="section-title">About You</div>
+          <div class="section-desc">Tell us about yourself and where you post your content.</div>
+        </div>
+
+        <div class="fields">
+
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label" for="fullName">
+                Full Name <span class="required">* required</span>
+              </label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. John Smith" required />
+              <span class="error-msg" id="err-fullName">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label class="field-label" for="email">
+                Email Address <span class="required">* required</span>
+              </label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+              <span class="error-msg" id="err-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label" for="whatsapp">
+                WhatsApp Number <span class="optional">(optional)</span>
+              </label>
+              <div class="field-desc">Include country code. Example: <code>+1 234 567 8900</code></div>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="+1 234 567 8900" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="telegram">
+                Telegram Username <span class="optional">(optional)</span>
+              </label>
+              <div class="field-desc">Example: <code>@yourname</code></div>
+              <input type="text" id="telegram" name="telegram" placeholder="@yourname" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="youtube">
+              YouTube Channel Link <span class="optional">(optional)</span>
+            </label>
+            <div class="field-desc">Example: <code>youtube.com/c/YourChannelName</code></div>
+            <input type="url" id="youtube" name="youtube" placeholder="https://youtube.com/c/..." />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="facebook">
+              Facebook Page Link <span class="optional">(optional)</span>
+            </label>
+            <div class="field-desc">Example: <code>facebook.com/YourPageName</code></div>
+            <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/..." />
+          </div>
+
+          <div class="field">
+            <label class="field-label">Which platforms do you post on? <span class="optional">(optional)</span></label>
+            <div class="options" style="flex-direction: row; flex-wrap: wrap; gap: 8px;">
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="YouTube" />
+                <span class="option-text">YouTube</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="Facebook" />
+                <span class="option-text">Facebook</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="Instagram" />
+                <span class="option-text">Instagram</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="TikTok" />
+                <span class="option-text">TikTok</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="LinkedIn" />
+                <span class="option-text">LinkedIn</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="X (Twitter)" />
+                <span class="option-text">X / Twitter</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="checkbox" name="platforms" value="Not started yet" />
+                <span class="option-text">Just starting</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="nav-bar">
+          <span></span>
+          <button type="button" class="btn btn-primary" onclick="nextStep(1)">
+            Continue <span>→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           STEP 2 — YOUR VIDEO
+      ══════════════════════════════════════ -->
+      <div class="form-card form-step" id="step2">
+        <div class="section-header">
+          <div class="section-tag">Step 2 of 4</div>
+          <div class="section-title">Your Video</div>
+          <div class="section-desc">Share the video you'd like us to create your free sample clip from.</div>
+        </div>
+
+        <div class="fields">
+
+          <div class="field">
+            <label class="field-label">How will you share your video? <span class="required">* required</span></label>
+            <div class="options">
+              <label class="option-label">
+                <input type="radio" name="videoMethod" value="YouTube link" required />
+                <span class="option-text"><strong>YouTube Link</strong> — paste your YouTube video URL below</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoMethod" value="Facebook link" />
+                <span class="option-text"><strong>Facebook Link</strong> — paste your Facebook video URL below</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoMethod" value="Google Drive / Dropbox / WeTransfer" />
+                <span class="option-text"><strong>File Upload Link</strong> — Google Drive, Dropbox, or WeTransfer</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoMethod" value="Other" />
+                <span class="option-text"><strong>Other</strong> — describe below</span>
+              </label>
+            </div>
+            <span class="error-msg" id="err-videoMethod">Please select how you will share your video.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="videoLink">
+              Paste Your Video Link Here <span class="required">* required</span>
+            </label>
+            <div class="field-desc">
+              Make sure the link is <strong style="color:var(--text)">publicly accessible</strong> or set to "Anyone with link can view."<br/><br/>
+              For Google Drive: Right-click file → Get link → Change to <code>Anyone with link</code> → Copy<br/>
+              For YouTube: Copy the video URL from your browser address bar.
+            </div>
+            <input type="url" id="videoLink" name="videoLink" placeholder="https://..." required />
+            <span class="error-msg" id="err-videoLink">Please paste your video link.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="videoDesc">
+              What is this video about? <span class="required">* required</span>
+            </label>
+            <div class="field-desc">
+              A brief description helps us understand your content and find the best moments.<br/>
+              Example: <code>"45-minute podcast about fitness tips for busy professionals"</code>
+            </div>
+            <textarea id="videoDesc" name="videoDesc" placeholder="Describe your video content..." required></textarea>
+            <span class="error-msg" id="err-videoDesc">Please describe your video.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Approximately how long is this video? <span class="required">* required</span></label>
+            <div class="options">
+              <label class="option-label">
+                <input type="radio" name="videoLength" value="Under 10 minutes" required />
+                <span class="option-text">Under 10 minutes</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoLength" value="10–20 minutes" />
+                <span class="option-text">10–20 minutes</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoLength" value="20–40 minutes" />
+                <span class="option-text">20–40 minutes</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoLength" value="40–60 minutes" />
+                <span class="option-text">40–60 minutes</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="videoLength" value="Over 60 minutes" />
+                <span class="option-text">Over 60 minutes</span>
+              </label>
+            </div>
+            <span class="error-msg" id="err-videoLength">Please select the video length.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label">
+              What moment should the sample clip focus on? <span class="required">* required</span>
+            </label>
+            <div class="field-desc">
+              We create <strong style="color:var(--accent)">1 free sample short clip</strong> from your video.
+              Help us choose the best moment so it showcases your content perfectly.
+            </div>
+            <div class="options">
+              <label class="option-label">
+                <input type="radio" name="clipFocus" value="Most engaging moment — Pola Clip decides (recommended)" required />
+                <span class="option-text"><strong>Let Pola Clip decide</strong> — we'll find the most engaging moment (recommended)</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="clipFocus" value="The opening hook" />
+                <span class="option-text"><strong>Opening hook</strong> — the first strong or powerful point in the video</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="clipFocus" value="A specific tip or advice moment" />
+                <span class="option-text"><strong>A specific tip or advice</strong> — a practical moment your audience will share</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="clipFocus" value="An emotional or motivational moment" />
+                <span class="option-text"><strong>Emotional or motivational moment</strong> — something that creates strong feelings</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="clipFocus" value="A controversial or surprising statement" />
+                <span class="option-text"><strong>Controversial or surprising statement</strong> — something unexpected or bold</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="clipFocus" value="Specific moment I will describe" />
+                <span class="option-text"><strong>I'll describe the exact moment</strong> — I know exactly which part I want</span>
+              </label>
+            </div>
+            <span class="error-msg" id="err-clipFocus">Please select a clip focus.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="specificMoment">
+              Describe the specific moment <span class="optional">(optional — only if you selected above)</span>
+            </label>
+            <div class="field-desc">
+              Example: <code>"Around the 12-minute mark I talk about why most people fail at saving — please start from there."</code>
+            </div>
+            <textarea id="specificMoment" name="specificMoment" placeholder="Describe the timestamp or topic you want clipped..."></textarea>
+          </div>
+
+        </div>
+        <div class="nav-bar">
+          <button type="button" class="btn btn-secondary" onclick="prevStep(2)">← Back</button>
+          <button type="button" class="btn btn-primary" onclick="nextStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           STEP 3 — STYLE & BRANDING
+      ══════════════════════════════════════ -->
+      <div class="form-card form-step" id="step3">
+        <div class="section-header">
+          <div class="section-tag">Step 3 of 4</div>
+          <div class="section-title">Style &amp; Branding</div>
+          <div class="section-desc">Help us match your brand. If unsure, leave it — we'll choose the best style for your content.</div>
+        </div>
+
+        <div class="fields">
+
+          <div class="field">
+            <label class="field-label">Caption Style <span class="required">* required</span></label>
+            <div class="field-desc">
+              <span class="icon">💡</span>
+              Captions are <strong style="color:var(--text)">burned directly into the video</strong> (cannot be turned off).
+              85% of social media videos are watched with sound OFF — captions are essential for reach.
+            </div>
+            <div class="options" style="gap: 10px;">
+              <label class="option-label">
+                <input type="radio" name="captionStyle" value="Viral Bold" required />
+                <span class="option-text">
+                  <strong>Viral Bold</strong>
+                  Large colored text, center screen, one word highlights. Best for motivation, energy, and fast-paced content. Most popular on TikTok and Reels.
+                </span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="captionStyle" value="Standard" />
+                <span class="option-text">
+                  <strong>Standard</strong>
+                  White text with black outline, displayed at the bottom of the screen. Best for interviews, podcasts, and calm professional content.
+                </span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="captionStyle" value="Highlight Style" />
+                <span class="option-text">
+                  <strong>Highlight Style</strong>
+                  Normal text with key words highlighted in a bright color. Best for educational or business content.
+                </span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="captionStyle" value="Pola Clip decides" />
+                <span class="option-text">
+                  <strong>Let Pola Clip decide</strong> — we'll choose what suits your content best (recommended for first-timers)
+                </span>
+              </label>
+            </div>
+            <span class="error-msg" id="err-captionStyle">Please select a caption style.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Do you have a logo to add to the clip? <span class="required">* required</span></label>
+            <div class="options">
+              <label class="option-label">
+                <input type="radio" name="hasLogo" value="Yes — I will share the logo file link" required />
+                <span class="option-text"><strong>Yes</strong> — I'll share the logo file link below</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="hasLogo" value="No — use channel/brand name as text only" />
+                <span class="option-text"><strong>No logo</strong> — please use my channel / brand name as text only</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="hasLogo" value="No branding for sample — just show the editing quality" />
+                <span class="option-text"><strong>No branding for now</strong> — just show me the editing quality on this sample</span>
+              </label>
+            </div>
+            <span class="error-msg" id="err-hasLogo">Please make a selection.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="logoLink">
+              Logo File Link <span class="optional">(only if you selected "Yes" above)</span>
+            </label>
+            <div class="field-desc">
+              Share via Google Drive or Dropbox. <strong style="color:var(--text)">PNG with transparent background</strong> preferred.
+              Make sure the link is set to <code>Anyone with link can view</code>.
+            </div>
+            <input type="url" id="logoLink" name="logoLink" placeholder="https://drive.google.com/..." />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="brandName">
+              Channel or Brand Name to Display on Clip <span class="required">* required</span>
+            </label>
+            <div class="field-desc">
+              This appears on the intro/outro of your clip. Example: <code>@YourChannel</code> or <code>Your Brand Name</code>
+            </div>
+            <input type="text" id="brandName" name="brandName" placeholder="@YourChannelName or Brand Name" required />
+            <span class="error-msg" id="err-brandName">Please enter your brand or channel name.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="brandColors">
+              Brand Colors <span class="optional">(optional)</span>
+            </label>
+            <div class="field-desc">
+              Hex codes work great. Example: <code>#FF5733</code> and <code>#ffffff</code>.
+              Or just describe them: <code>"dark blue and white"</code> or <code>"red and black"</code>.
+            </div>
+            <input type="text" id="brandColors" name="brandColors" placeholder="#RRGGBB or describe your colors" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="avoidInclude">
+              Anything specific to include or avoid? <span class="optional">(optional)</span>
+            </label>
+            <div class="field-desc">
+              Example: <code>"Don't include the part where I mention competitor names"</code> or
+              <code>"Make sure to include my call-to-action at the end."</code>
+            </div>
+            <textarea id="avoidInclude" name="avoidInclude" placeholder="Any specific instructions for this clip..."></textarea>
+          </div>
+
+        </div>
+        <div class="nav-bar">
+          <button type="button" class="btn btn-secondary" onclick="prevStep(3)">← Back</button>
+          <button type="button" class="btn btn-primary" onclick="nextStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           STEP 4 — PACKAGE INTEREST
+      ══════════════════════════════════════ -->
+      <div class="form-card form-step" id="step4">
+        <div class="section-header">
+          <div class="section-tag">Step 4 of 4 — Almost Done!</div>
+          <div class="section-title">Sample &amp; Package Interest</div>
+          <div class="section-desc">Tell us what you're looking for so we can prepare your sample and follow up with the right information.</div>
+        </div>
+
+        <div class="fields">
+
+          <div class="field">
+            <label class="field-label">What are you interested in? <span class="required">* required</span></label>
+            <div class="package-cards">
+
+              <label class="pkg-card pkg-sample">
+                <input type="radio" name="packageInterest" value="Free sample only — I will decide after" required />
+                <div class="pkg-info">
+                  <div class="pkg-name">🎬 Free Sample First</div>
+                  <div class="pkg-detail">1 short clip from your video. Keep it regardless of your decision. Pay only if satisfied.</div>
+                </div>
+                <div class="pkg-price">
+                  <div class="new" style="color:var(--success)">FREE</div>
+                  <div class="old">No card needed</div>
+                </div>
+              </label>
+
+              <label class="pkg-card">
+                <input type="radio" name="packageInterest" value="Starter — 12 clips/month ($200 first month)" />
+                <div class="pkg-info">
+                  <div class="pkg-name">Starter Package</div>
+                  <div class="pkg-detail">12 short clips/month · Captions included · 48hr delivery</div>
+                </div>
+                <div class="pkg-price">
+                  <div class="new">$200</div>
+                  <div class="old">$250/mo</div>
+                  <div class="badge">20% OFF</div>
+                </div>
+              </label>
+
+              <label class="pkg-card">
+                <input type="radio" name="packageInterest" value="Growth — 30 clips/month ($400 first month)" />
+                <div class="pkg-info">
+                  <div class="pkg-name">Growth Package</div>
+                  <div class="pkg-detail">30 short clips/month · Captions included · 48hr delivery</div>
+                </div>
+                <div class="pkg-price">
+                  <div class="new">$400</div>
+                  <div class="old">$500/mo</div>
+                  <div class="badge">20% OFF</div>
+                </div>
+              </label>
+
+              <label class="pkg-card">
+                <input type="radio" name="packageInterest" value="Pro — 70 clips/month ($720 first month)" />
+                <div class="pkg-info">
+                  <div class="pkg-name">Pro Package</div>
+                  <div class="pkg-detail">70 clips/month · Captions + thumbnails · 48hr delivery</div>
+                </div>
+                <div class="pkg-price">
+                  <div class="new">$720</div>
+                  <div class="old">$900/mo</div>
+                  <div class="badge">20% OFF</div>
+                </div>
+              </label>
+
+              <label class="pkg-card">
+                <input type="radio" name="packageInterest" value="Not sure yet — let me see the sample first" />
+                <div class="pkg-info">
+                  <div class="pkg-name">Not Sure Yet</div>
+                  <div class="pkg-detail">I want to see the sample quality first before deciding on a package.</div>
+                </div>
+                <div class="pkg-price">
+                  <div class="new" style="color:var(--muted); font-size:14px;">Decide later</div>
+                </div>
+              </label>
+
+            </div>
+            <span class="error-msg" id="err-packageInterest">Please select an option.</span>
+          </div>
+
+          <div class="field">
+            <label class="field-label">How did you find Pola Clip? <span class="optional">(optional)</span></label>
+            <div class="options" style="flex-direction: row; flex-wrap: wrap; gap: 8px;">
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="YouTube" />
+                <span class="option-text">YouTube</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="Facebook" />
+                <span class="option-text">Facebook</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="Instagram" />
+                <span class="option-text">Instagram</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="LinkedIn" />
+                <span class="option-text">LinkedIn</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="Google Search" />
+                <span class="option-text">Google</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="Direct message / outreach" />
+                <span class="option-text">Direct Message</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="Referral" />
+                <span class="option-text">Referral</span>
+              </label>
+              <label class="option-label" style="flex: none; padding: 9px 14px;">
+                <input type="radio" name="foundUs" value="Other" />
+                <span class="option-text">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="questions">
+              Any questions for our team? <span class="optional">(optional)</span>
+            </label>
+            <div class="field-desc">Ask us anything — we'll reply to your email within 2 hours of receiving your submission.</div>
+            <textarea id="questions" name="questions" placeholder="Any questions or additional notes..."></textarea>
+          </div>
+
+          <div class="highlight-box">
+            <div class="hl-title">📌 What Happens After You Submit</div>
+            <div style="color:var(--muted); font-size:14px; line-height:1.9;">
+              <div>① We review your video within <strong style="color:var(--text)">2 hours</strong></div>
+              <div>② We create your 1 FREE sample short clip</div>
+              <div>③ We email you a download link within <strong style="color:var(--text)">48 hours</strong></div>
+              <div>④ You download, watch and decide — <strong style="color:var(--text)">zero pressure</strong></div>
+              <div style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
+                ✅ Your clip is yours to keep &nbsp;·&nbsp; ✅ No commitment required
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:12px; color:var(--muted); line-height:1.7; padding:0 2px;">
+            By submitting this form, you confirm that you own or have the rights to the video content
+            you are sharing with us. Pola IT · polaclip.com · hello@polaclip.com
+          </div>
+
+        </div>
+        <div class="nav-bar">
+          <button type="button" class="btn btn-secondary" onclick="prevStep(4)">← Back</button>
+          <button type="submit" class="btn btn-submit" id="submitBtn">
+            🚀 Submit &amp; Get My Free Clip
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- ══════════════════════════════════════
+         SUCCESS PAGE
+    ══════════════════════════════════════ -->
+    <div class="form-card success-page" id="successPage">
+      <div class="success-icon">🎬</div>
+      <h2>You're All Set, <span id="successName">there</span>!</h2>
+      <p>
+        We've received your video submission. Your <strong>FREE sample clip</strong> will be
+        delivered to your email within <strong>48 hours</strong>.
+        Keep an eye on your inbox — and check your spam folder just in case.
+      </p>
+
+      <div class="next-steps">
+        <h3>What Happens Next</h3>
+        <div class="next-step-item">
+          <div class="step-num">1</div>
+          <div>We review your video and brief within <strong>2 hours</strong> of your submission.</div>
+        </div>
+        <div class="next-step-item">
+          <div class="step-num">2</div>
+          <div>Our editor creates your short clip with captions and your branding.</div>
+        </div>
+        <div class="next-step-item">
+          <div class="step-num">3</div>
+          <div>We email you a <strong>Google Drive download link</strong> within 48 hours.</div>
+        </div>
+        <div class="next-step-item">
+          <div class="step-num">4</div>
+          <div>You download it, post it, and decide. <strong>Pay only if you love it.</strong></div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://polaclip.com" class="btn btn-secondary" style="font-size:13px;">← Back to Website</a>
+        <a href="https://wa.me/YOURNUMBER" class="btn btn-primary" style="font-size:13px;" target="_blank">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <strong style="color:var(--text)">Pola Clip</strong> · a service of Pola IT ·
+      <a href="https://polaclip.com">polaclip.com</a> ·
+      <a href="mailto:hello@polaclip.com">hello@polaclip.com</a>
+    </div>
+
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    function updateProgress(step) {
+      for (let i = 1; i <= totalSteps; i++) {
+        const circle = document.getElementById('sc' + i);
+        const label = document.getElementById('sl-label' + i);
+        const line = document.getElementById('sl' + i);
+
+        if (i < step) {
+          circle.className = 'step-circle done';
+          circle.innerHTML = '✓';
+          label.className = 'step-label done';
+          if (line) line.className = 'step-line done';
+        } else if (i === step) {
+          circle.className = 'step-circle active';
+          circle.innerHTML = i;
+          label.className = 'step-label active';
+          if (line) line.className = 'step-line';
+        } else {
+          circle.className = 'step-circle';
+          circle.innerHTML = i;
+          label.className = 'step-label';
+          if (line) line.className = 'step-line';
+        }
+      }
+    }
+
+    function showStep(step) {
+      document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('step' + step);
+      if (target) {
+        target.classList.add('active');
+        target.style.animation = 'none';
+        void target.offsetWidth;
+        target.style.animation = 'fadeUp 0.4s ease both';
+      }
+      updateProgress(step);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateStep(step) {
+      let valid = true;
+
+      // Clear all errors for this step first
+      document.querySelectorAll('#step' + step + ' .error-msg').forEach(e => e.classList.remove('show'));
+      document.querySelectorAll('#step' + step + ' input, #step' + step + ' textarea').forEach(e => e.classList.remove('error'));
+
+      if (step === 1) {
+        const name = document.getElementById('fullName');
+        const email = document.getElementById('email');
+        if (!name.value.trim()) {
+          name.classList.add('error');
+          document.getElementById('err-fullName').classList.add('show');
+          valid = false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value.trim())) {
+          email.classList.add('error');
+          document.getElementById('err-email').classList.add('show');
+          valid = false;
+        }
+      }
+
+      if (step === 2) {
+        const method = document.querySelector('input[name="videoMethod"]:checked');
+        const link = document.getElementById('videoLink');
+        const desc = document.getElementById('videoDesc');
+        const length = document.querySelector('input[name="videoLength"]:checked');
+        const focus = document.querySelector('input[name="clipFocus"]:checked');
+
+        if (!method) {
+          document.getElementById('err-videoMethod').classList.add('show');
+          valid = false;
+        }
+        if (!link.value.trim()) {
+          link.classList.add('error');
+          document.getElementById('err-videoLink').classList.add('show');
+          valid = false;
+        }
+        if (!desc.value.trim()) {
+          desc.classList.add('error');
+          document.getElementById('err-videoDesc').classList.add('show');
+          valid = false;
+        }
+        if (!length) {
+          document.getElementById('err-videoLength').classList.add('show');
+          valid = false;
+        }
+        if (!focus) {
+          document.getElementById('err-clipFocus').classList.add('show');
+          valid = false;
+        }
+      }
+
+      if (step === 3) {
+        const caption = document.querySelector('input[name="captionStyle"]:checked');
+        const logo = document.querySelector('input[name="hasLogo"]:checked');
+        const brand = document.getElementById('brandName');
+
+        if (!caption) {
+          document.getElementById('err-captionStyle').classList.add('show');
+          valid = false;
+        }
+        if (!logo) {
+          document.getElementById('err-hasLogo').classList.add('show');
+          valid = false;
+        }
+        if (!brand.value.trim()) {
+          brand.classList.add('error');
+          document.getElementById('err-brandName').classList.add('show');
+          valid = false;
+        }
+      }
+
+      if (step === 4) {
+        const pkg = document.querySelector('input[name="packageInterest"]:checked');
+        if (!pkg) {
+          document.getElementById('err-packageInterest').classList.add('show');
+          valid = false;
+        }
+      }
+
+      return valid;
+    }
+
+    function nextStep(from) {
+      if (!validateStep(from)) {
+        // Scroll to first error
+        const firstError = document.querySelector('#step' + from + ' .error-msg.show, #step' + from + ' .error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      currentStep = from + 1;
+      showStep(currentStep);
+    }
+
+    function prevStep(from) {
+      currentStep = from - 1;
+      showStep(currentStep);
+    }
+
+    // Handle form submission
+    document.getElementById('mainForm').addEventListener('submit', function(e) {
+      if (!validateStep(4)) {
+        e.preventDefault();
+        return;
+      }
+
+      // Show loading state
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      // For Netlify — let the form submit naturally
+      // The success page below is shown via Netlify redirect OR JS fallback
+
+      // If NOT using Netlify (testing locally), show success manually:
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        e.preventDefault();
+        showSuccessPage();
+      }
+      // When deployed on Netlify, add this to your Netlify form settings:
+      // Success URL: /submit?success=true
+      // Then the page will show the success state automatically
+    });
+
+    function showSuccessPage() {
+      const nameVal = document.getElementById('fullName').value.trim().split(' ')[0];
+      document.getElementById('successName').textContent = nameVal || 'there';
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('successPage').classList.add('show');
+      document.querySelector('.progress-bar').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Check if redirected back after Netlify success
+    if (window.location.search.includes('success=true')) {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('mainForm').style.display = 'none';
+        document.getElementById('successPage').classList.add('show');
+        document.querySelector('.progress-bar').style.display = 'none';
+        document.getElementById('successName').textContent = 'there';
+      });
+    }
+  </script>
+</body>
+</html>

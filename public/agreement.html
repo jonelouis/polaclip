@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pola Clip — Service Agreement</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --card: #16161f;
+    --border: #2a2a3a;
+    --accent: #e8ff47;
+    --text: #f0f0f5;
+    --muted: #8888aa;
+    --success: #22c55e;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 28px 80px;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 36px;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .tagline { color: var(--muted); font-size: 13px; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin: 24px 0 6px;
+    color: var(--text);
+  }
+  .doc-meta {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    font-size: 14px;
+  }
+  .meta-row { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .meta-value {
+    color: var(--text);
+    font-weight: 500;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 4px;
+    min-height: 26px;
+  }
+  .section {
+    margin-bottom: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .section-head {
+    background: linear-gradient(90deg, rgba(232,255,71,0.07), transparent);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(232,255,71,0.12);
+    border: 1px solid rgba(232,255,71,0.3);
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .section-body { padding: 18px 22px; color: #d0d0e0; font-size: 14px; line-height: 1.8; }
+  .section-body ul { padding-left: 20px; margin: 8px 0; }
+  .section-body li { margin-bottom: 6px; }
+  .section-body strong { color: var(--text); }
+  .highlight {
+    background: rgba(232,255,71,0.06);
+    border: 1px solid rgba(232,255,71,0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  th {
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #d0d0e0;
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--accent); }
+  .signature-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-top: 36px;
+  }
+  .sig-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .sig-col h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+  .sig-field { margin-bottom: 16px; }
+  .sig-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .sig-line {
+    border-bottom: 1px dashed var(--border);
+    min-height: 32px;
+    padding-bottom: 4px;
+  }
+  .agreement-box {
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 28px 0 0;
+    font-size: 13px;
+    color: #86efac;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  @media print {
+    body { background: white; color: #111; }
+    .section { background: #f9f9f9; border: 1px solid #ddd; }
+    .section-head { background: #f0f0f0; }
+    .section-num { background: #e8ff47; color: #000; border-color: #ccc; }
+    .section-title, .section-body, td, th { color: #111 !important; }
+    .logo { color: #000; }
+    .highlight { background: #fffde7; border-color: #ccc; }
+    .sig-line { border-color: #999; }
+    .agreement-box { background: #f0fff0; border-color: #aaa; color: #333; }
+  }
+  @media (max-width: 560px) {
+    .doc-meta { grid-template-columns: 1fr; }
+    .sig-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">Pola Clip</div>
+    <div class="tagline">A service of Pola IT · polaclip.com · hello@polaclip.com</div>
+    <h1>Service Agreement</h1>
+  </div>
+
+  <!-- Document Meta -->
+  <div class="doc-meta">
+    <div class="meta-row">
+      <span class="meta-label">Agreement Date</span>
+      <span class="meta-value" id="agreementDate"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Agreement Reference</span>
+      <span class="meta-value" id="refNum"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Client Name</span>
+      <span class="meta-value"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Client Email</span>
+      <span class="meta-value"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Package Selected</span>
+      <span class="meta-value"></span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Monthly Price</span>
+      <span class="meta-value"></span>
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <div class="section-title">Services Provided</div>
+    </div>
+    <div class="section-body">
+      Pola Clip, a service of Pola IT, agrees to deliver the following on a monthly basis as per the package selected above:
+      <ul>
+        <li>Creation of short-form video clips from long-form video content provided by the Client</li>
+        <li>Vertical format (9:16 aspect ratio) optimized for Instagram Reels, YouTube Shorts, Facebook Reels, and TikTok</li>
+        <li>Captions burned directly into all clips (non-removable, permanently embedded)</li>
+        <li>Client branding applied to each clip (logo, channel handle, intro/outro) as per brand kit provided</li>
+        <li><strong>Pro Package only:</strong> Custom thumbnail images for YouTube or Facebook</li>
+      </ul>
+      <div class="highlight">
+        <strong>Package Summary:</strong>
+        <table style="margin-top:10px;">
+          <thead><tr><th>Package</th><th>Clips/Month</th><th>Includes</th><th>Regular Price</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Starter</strong></td><td>12 clips</td><td>Captions + Branding</td><td>$250/month</td></tr>
+            <tr><td><strong>Growth</strong></td><td>30 clips</td><td>Captions + Branding</td><td>$500/month</td></tr>
+            <tr><td><strong>Pro</strong></td><td>70 clips</td><td>Captions + Branding + Thumbnails</td><td>$900/month</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <div class="section-title">Delivery Timeline & Guarantee</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Standard delivery:</strong> All clips will be delivered within <strong>48 hours</strong> of Pola Clip receiving the source video</li>
+        <li><strong>Revision delivery:</strong> Revised clips will be delivered within <strong>24 hours</strong> of receiving the Client's written revision notes</li>
+        <li>Delivery is made via Google Drive download link sent to the Client's registered email address</li>
+        <li>Delivery timelines begin only after the source video is fully accessible and confirmed received by Pola Clip</li>
+        <li>Pola Clip will notify the Client immediately if a delivery timeline cannot be met due to unforeseen circumstances</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <div class="section-title">Revisions Policy</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Package</th><th>Revision Rounds Included</th><th>Additional Revisions</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Starter</strong></td><td>2 rounds per month</td><td>$5 per clip</td></tr>
+          <tr><td><strong>Growth</strong></td><td>2 rounds per month</td><td>$4 per clip</td></tr>
+          <tr><td><strong>Pro</strong></td><td>3 rounds per month</td><td>$3 per clip</td></tr>
+        </tbody>
+      </table>
+      <ul style="margin-top:12px;">
+        <li>A "revision round" means one set of written feedback from the Client applied to the clips in question</li>
+        <li>Revisions are limited to <strong>adjustments of existing footage</strong>: timing changes, caption corrections, branding adjustments, and cut modifications</li>
+        <li>Requests that require creating a <strong>completely new clip</strong> from different source footage are treated as a new clip order and charged accordingly</li>
+        <li>Revision requests must be submitted in writing (email or message) with specific, clear instructions</li>
+        <li>Unused revision rounds do not carry over to the following month</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <div class="section-title">Client Responsibilities</div>
+    </div>
+    <div class="section-body">
+      The Client agrees to:
+      <ul>
+        <li>Provide source video files or accessible video links promptly at the start of each month or upon agreement</li>
+        <li>Provide a complete brand kit (logo file in PNG with transparent background, brand colors, social media handles) within <strong>48 hours</strong> of onboarding</li>
+        <li>Specify the number of clips desired per video and any specific moments or focus areas</li>
+        <li>Submit all revision requests in writing with clear, specific instructions</li>
+        <li>Ensure all video links shared are <strong>publicly accessible</strong> or set to "Anyone with link can view"</li>
+        <li>Confirm that they own or have full rights to all video content shared with Pola Clip</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">5</div>
+      <div class="section-title">Payment Terms</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Month 1:</strong> 100% of the monthly package fee is due in full before any work begins</li>
+        <li><strong>Month 2 onward:</strong> Invoice issued on the 1st of each month, payment due within <strong>15 days (Net-15)</strong></li>
+        <li><strong>Late payment:</strong> All work pauses if payment is not received by the due date. Work resumes upon receipt of payment. No penalty fee is charged for the first late payment.</li>
+        <li><strong>Accepted payment methods:</strong> Binance Pay, Payoneer</li>
+        <li><strong>Refund policy:</strong> No refunds are issued after clips have been delivered and approved. If the Client is genuinely unsatisfied with delivered clips, Pola Clip will provide additional clips at no charge as goodwill resolution, at Pola Clip's discretion.</li>
+        <li>All prices are in United States Dollars (USD)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">6</div>
+      <div class="section-title">Intellectual Property</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>The Client retains <strong>full ownership</strong> of all original video content provided to Pola Clip</li>
+        <li>The Client retains full ownership of all completed short clips delivered by Pola Clip</li>
+        <li>Pola Clip retains the right to display completed clips as <strong>portfolio samples</strong> on its website, YouTube channel, Facebook page, and other marketing materials, unless the Client requests otherwise in writing</li>
+        <li>The Client confirms they have all necessary rights, licenses, and permissions for any music, footage, or third-party content present in their source videos</li>
+        <li>Pola Clip is not responsible for any copyright claims arising from third-party content in the Client's original videos</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">7</div>
+      <div class="section-title">Confidentiality</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>Pola Clip will not share, sell, or distribute the Client's unpublished video content to any third party other than editors working directly on the Client's project under Pola Clip's supervision</li>
+        <li>All editors working on Client content are bound by their own confidentiality agreements with Pola Clip</li>
+        <li>This confidentiality obligation does not apply to content the Client has already published publicly</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">8</div>
+      <div class="section-title">Cancellation Policy</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>The Client may cancel the service at any time after Month 1 with <strong>7 days written notice</strong> sent to hello@polaclip.com</li>
+        <li>Month 1 is a <strong>non-cancellable prepaid term</strong> — no refund is issued for Month 1 cancellation requests</li>
+        <li>Upon cancellation, all clips already delivered remain the property of the Client</li>
+        <li>Pola Clip reserves the right to terminate this agreement if the Client repeatedly violates these terms, with a pro-rata refund issued for any unused prepaid period</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">9</div>
+      <div class="section-title">Limitation of Liability</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>Pola Clip <strong>guarantees delivery quality and timeline only</strong>. Pola Clip makes no guarantees regarding social media reach, algorithm performance, engagement rates, follower growth, or monetization results from clips delivered</li>
+        <li>Pola Clip is not liable for platform policy changes, account bans, or restrictions imposed by social media platforms</li>
+        <li>Pola Clip's total liability under this agreement shall not exceed the amount paid by the Client in the month in which the issue arose</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 10 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">10</div>
+      <div class="section-title">Governing Terms</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>This agreement represents the complete understanding between Pola Clip (Pola IT) and the Client</li>
+        <li>Any changes to this agreement must be agreed in writing by both parties</li>
+        <li>This agreement is effective from the date the Client makes their first payment to Pola Clip</li>
+      </ul>
+      <div class="highlight" style="margin-top:14px;">
+        <strong>Digital Acceptance:</strong> By making payment to Pola Clip, the Client confirms they have read, understood, and agreed to all terms in this Service Agreement. A reply of "I agree" to the agreement email also constitutes acceptance.
+      </div>
+    </div>
+  </div>
+
+  <!-- Signature Block -->
+  <div class="signature-block">
+    <div class="sig-title">Agreement Signatures</div>
+    <div class="sig-grid">
+      <div class="sig-col">
+        <h3>Service Provider</h3>
+        <div class="sig-field">
+          <div class="sig-label">Company Name</div>
+          <div class="sig-line">Pola IT</div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Service</div>
+          <div class="sig-line">Pola Clip</div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Website</div>
+          <div class="sig-line">polaclip.com</div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Email</div>
+          <div class="sig-line">hello@polaclip.com</div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Signature</div>
+          <div class="sig-line" style="min-height:44px;"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+      <div class="sig-col">
+        <h3>Client</h3>
+        <div class="sig-field">
+          <div class="sig-label">Full Name</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Email Address</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Channel / Brand Name</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Package</div>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Signature or Written Acceptance</div>
+          <div class="sig-line" style="min-height:44px;"></div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-label">Date</div>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="agreement-box">
+      ✅ Digital acceptance is valid. A reply email of "I agree" to this document, or completion of first payment, constitutes the Client's acceptance of all terms above.
+    </div>
+  </div>
+
+  <div class="footer">
+    Pola IT · Pola Clip · <a href="https://polaclip.com">polaclip.com</a> · <a href="mailto:hello@polaclip.com">hello@polaclip.com</a><br/>
+    This document is confidential and intended only for the named Client above.
+  </div>
+
+</div>
+<script>
+  // Auto-fill today's date and reference number
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+  const refStr = 'PCL-' + today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(Math.floor(Math.random()*9000)+1000);
+  document.getElementById('agreementDate').textContent = dateStr;
+  document.getElementById('refNum').textContent = refStr;
+</script>
+</body>
+</html>
