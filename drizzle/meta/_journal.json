@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1780397874021,
+      "tag": "0000_funny_mulholland_black",
+      "breakpoints": true
+    }
+  ]
 }
