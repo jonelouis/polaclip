@@ -1,5 +1,0 @@
-name = "polaclip"
-compatibility_date = "2026-06-04"
-
-[assets]
-directory = "./public"
