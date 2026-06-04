@@ -1,5 +1,8 @@
 name = "polaclip"
 compatibility_date = "2024-04-01"
+main = "server/index.js"
 
 [assets]
 directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
