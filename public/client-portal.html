@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Portal — Pola Clip</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f8f8;
+      --card: #ffffff;
+      --card2: #f8f8f8;
+      --border: #e5e5e5;
+      --accent: #ff6b35;
+      --purple: #cc4400;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --info: #0ea5e9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+    .topnav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800; font-size: 18px;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-logo span { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 8px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .client-badge {
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.3);
+      color: var(--accent);
+      padding: 5px 12px; border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+      font-family: 'Poppins', sans-serif; display: none;
+    }
+    .client-badge.show { display: block; }
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted); padding: 5px 12px;
+      border-radius: 8px; font-size: 12px;
+      cursor: pointer; transition: all 0.2s; display: none;
+    }
+    .logout-btn.show { display: block; }
+    .logout-btn:hover { border-color: var(--error); color: var(--error); }
+    .wrapper { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 40px 20px 80px; }
+    #loginScreen {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: calc(100vh - 60px);
+      text-align: center; padding: 40px 20px;
+    }
+    .login-icon {
+      width: 72px; height: 72px;
+      background: rgba(255,107,53,0.08);
+      border: 2px solid rgba(255,107,53,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; margin: 0 auto 24px;
+    }
+    #loginScreen h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800; margin-bottom: 12px; color: var(--text);
+    }
+    #loginScreen h1 span { color: var(--accent); }
+    #loginScreen p { color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 440px; margin: 0 auto 36px; }
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 36px;
+      width: 100%; max-width: 420px; margin: 0 auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .login-card label {
+      display: block; font-weight: 600; font-size: 14px;
+      margin-bottom: 8px; color: var(--text); text-align: left;
+      font-family: 'Poppins', sans-serif;
+    }
+    .login-card .hint { font-size: 12px; color: var(--muted); margin-bottom: 14px; text-align: left; }
+    .code-input-wrap { display: flex; gap: 10px; }
+    .code-input-wrap input {
+      flex: 1;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 14px 16px;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      outline: none; transition: all 0.2s; text-align: center;
+    }
+    .code-input-wrap input:focus {
+      border-color: var(--accent);
+      background: rgba(255,107,53,0.03);
+      box-shadow: 0 0 0 3px rgba(255,107,53,0.08);
+    }
+    .code-input-wrap input.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+    .login-btn {
+      background: var(--accent); color: white;
+      border: none; border-radius: 8px; padding: 14px 22px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 14px;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .login-btn:hover { background: #ff5520; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(255,107,53,0.25); }
+    .login-error {
+      margin-top: 12px;
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.2);
+      color: #dc2626; padding: 10px 14px;
+      border-radius: 8px; font-size: 13px;
+      display: none; text-align: left;
+    }
+    .login-error.show { display: block; }
+    .login-help { margin-top: 20px; font-size: 13px; color: var(--muted); text-align: center; }
+    .login-help a { color: var(--accent); text-decoration: none; }
+    #dashboard { display: none; }
+    #dashboard.show { display: block; }
+    .welcome-bar {
+      background: linear-gradient(135deg, rgba(255,107,53,0.07), rgba(255,107,53,0.02));
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 12px; padding: 22px 26px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 16px;
+      animation: fadeUp 0.4s ease both;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .welcome-left h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px; font-weight: 800; margin-bottom: 4px; color: var(--text);
+    }
+    .welcome-left h2 span { color: var(--accent); }
+    .welcome-left p { color: var(--muted); font-size: 13px; }
+    .pkg-pill {
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.25);
+      color: var(--accent); border-radius: 100px;
+      padding: 8px 18px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 13px; white-space: nowrap;
+    }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-bottom: 20px;
+      animation: fadeUp 0.4s 0.05s ease both;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 20px; text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px; font-weight: 800;
+      color: var(--accent); line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    .sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .sec-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px; color: var(--text);
+    }
+    .sec-title .dot {
+      width: 8px; height: 8px; background: var(--accent);
+      border-radius: 50%; display: inline-block;
+    }
+    .status-track {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px; margin-bottom: 20px;
+      animation: fadeUp 0.4s 0.1s ease both;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .track-steps {
+      display: flex; align-items: flex-start; gap: 0;
+      overflow-x: auto; padding-bottom: 4px;
+    }
+    .track-step { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 72px; }
+    .track-dot-row { display: flex; align-items: center; width: 100%; }
+    .track-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0; transition: all 0.3s;
+      background: var(--surface); z-index: 1;
+    }
+    .track-dot.done { background: var(--purple); border-color: var(--purple); color: white; }
+    .track-dot.active {
+      background: var(--accent); border-color: var(--accent); color: white;
+      box-shadow: 0 4px 14px rgba(255,107,53,0.3);
+    }
+    .track-dot.pending { background: var(--surface); border-color: var(--border); color: var(--muted); }
+    .track-line { flex: 1; height: 2px; background: var(--border); transition: background 0.3s; margin: 0 2px; }
+    .track-line.done { background: var(--purple); }
+    .track-label {
+      font-size: 10px; color: var(--muted); text-align: center;
+      margin-top: 8px; line-height: 1.4; padding: 0 2px; font-weight: 500;
+    }
+    .track-label.active { color: var(--accent); font-weight: 600; }
+    .track-label.done { color: var(--purple); }
+    .no-active { text-align: center; padding: 20px; color: var(--muted); font-size: 14px; }
+    .no-active span { font-size: 28px; display: block; margin-bottom: 8px; }
+    .request-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; margin-bottom: 20px;
+      animation: fadeUp 0.4s 0.15s ease both;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .request-head {
+      background: linear-gradient(90deg, rgba(255,107,53,0.06), transparent);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .request-head-icon {
+      width: 36px; height: 36px;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .request-head-text h3 { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); }
+    .request-head-text p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .rfields { padding: 22px 24px; display: flex; flex-direction: column; gap: 20px; }
+    .rfield { display: flex; flex-direction: column; gap: 7px; }
+    .rfield label {
+      font-weight: 600; font-size: 14px; color: var(--text);
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .req { color: var(--accent); font-size: 11px; }
+    .opt { color: var(--muted); font-size: 11px; font-weight: 400; }
+    .rfield .hint {
+      font-size: 12px; color: var(--muted); line-height: 1.6;
+      background: rgba(0,0,0,0.02);
+      border-left: 2px solid var(--border);
+      padding: 6px 10px; border-radius: 0 6px 6px 0;
+    }
+    .rfield .hint code {
+      background: rgba(255,107,53,0.08); color: var(--accent);
+      padding: 1px 5px; border-radius: 4px; font-size: 11px;
+    }
+    input[type="text"], input[type="url"], input[type="number"], textarea, select {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 12px 14px; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 14px; width: 100%;
+      outline: none; transition: all 0.2s; -webkit-appearance: none;
+    }
+    textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      background: rgba(255,107,53,0.03);
+      box-shadow: 0 0 0 3px rgba(255,107,53,0.08);
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    input.err, textarea.err { border-color: var(--error); }
+    .errmsg { font-size: 12px; color: var(--error); display: none; }
+    .errmsg.show { display: block; }
+    .roptions { display: flex; flex-direction: column; gap: 7px; }
+    .roption {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 11px 14px; background: var(--surface);
+      border: 1.5px solid var(--border); border-radius: 8px;
+      cursor: pointer; transition: all 0.2s; font-size: 14px; color: var(--text);
+    }
+    .roption:hover { background: rgba(255,107,53,0.03); border-color: rgba(255,107,53,0.4); }
+    .roption:has(input:checked) { background: rgba(255,107,53,0.05); border-color: var(--accent); }
+    .roption input[type="radio"] {
+      width: 16px; height: 16px; min-width: 16px;
+      accent-color: var(--accent); margin-top: 2px;
+      border: none; padding: 0; background: transparent;
+    }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+    .changes-grid { display: flex; flex-direction: column; gap: 8px; }
+    .change-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 14px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; transition: all 0.2s; font-size: 13px; color: var(--text);
+    }
+    .change-item:has(input:checked) {
+      background: rgba(255,107,53,0.04);
+      border-color: rgba(255,107,53,0.3);
+    }
+    .change-item input[type="checkbox"] {
+      width: 15px; height: 15px; min-width: 15px;
+      accent-color: var(--accent); margin-top: 1px;
+      border: none; padding: 0; background: transparent;
+    }
+    .change-item .ci-label { font-weight: 600; color: var(--text); }
+    .change-item .ci-desc { color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .change-detail {
+      background: rgba(0,0,0,0.02); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; margin-top: 6px; display: none;
+    }
+    .change-detail.show { display: block; }
+    .change-detail textarea { min-height: 64px; font-size: 13px; }
+    .submit-bar {
+      padding: 18px 24px 24px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .submit-info { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .submit-info strong { color: var(--text); }
+    .submit-btn {
+      background: var(--accent); color: white; border: none; border-radius: 8px;
+      padding: 13px 28px; font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .submit-btn:hover { background: #ff5520; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(255,107,53,0.25); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+    .history-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      animation: fadeUp 0.4s 0.2s ease both;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .history-head {
+      padding: 16px 22px; border-bottom: 1px solid var(--border);
+      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .history-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 22px; border-bottom: 1px solid #f5f5f5;
+      font-size: 13px; color: var(--text);
+    }
+    .history-item:last-child { border-bottom: none; }
+    .h-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .h-icon.delivered { background: rgba(34,197,94,0.1); }
+    .h-icon.pending { background: rgba(255,107,53,0.1); }
+    .h-icon.revision { background: rgba(245,158,11,0.1); }
+    .h-title { font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .h-meta { color: var(--muted); font-size: 12px; }
+    .h-status { margin-left: auto; padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+    .h-status.delivered { background: rgba(34,197,94,0.1); color: var(--success); }
+    .h-status.in-progress { background: rgba(255,107,53,0.1); color: var(--accent); }
+    .h-status.revision { background: rgba(245,158,11,0.1); color: var(--warning); }
+    .info-panel {
+      background: rgba(255,107,53,0.04);
+      border: 1px solid rgba(255,107,53,0.15);
+      border-radius: 12px; padding: 16px 20px; margin-top: 20px;
+      font-size: 13px; color: #883300; line-height: 1.8;
+      animation: fadeUp 0.4s 0.25s ease both;
+    }
+    .info-panel strong { color: var(--text); }
+    .success-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4); z-index: 200;
+      align-items: center; justify-content: center;
+    }
+    .success-overlay.show { display: flex; }
+    .success-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px 36px;
+      max-width: 440px; width: 90%; text-align: center;
+      animation: fadeUp 0.4s ease both;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .s-icon {
+      width: 72px; height: 72px;
+      background: rgba(34,197,94,0.08);
+      border: 2px solid rgba(34,197,94,0.25);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 20px;
+    }
+    .success-box h2 { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 10px; color: var(--text); }
+    .success-box h2 span { color: var(--success); }
+    .success-box p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
+    .ref-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px;
+      font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700;
+      color: var(--accent); margin-bottom: 24px;
+    }
+    .close-success {
+      background: var(--accent); color: white; border: none; border-radius: 8px;
+      padding: 13px 32px; font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s; width: 100%;
+    }
+    .close-success:hover { background: #ff5520; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      .rfields { padding: 16px; }
+      .request-head, .submit-bar { padding: 14px 16px; }
+      .stats-row { grid-template-columns: 1fr 1fr 1fr; }
+      .stat-num { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="topnav">
+  <a href="/" class="nav-logo">Pola Clip <span>Client Portal</span></a>
+  <div class="nav-right">
+    <span class="client-badge" id="clientBadge">PCL-000</span>
+    <button class="logout-btn" id="logoutBtn" onclick="logout()">Sign Out</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-icon">🔐</div>
+  <h1>Welcome to Your<br/><span>Client Portal</span></h1>
+  <p>Enter your unique Client Code to access your dashboard, submit video requests, and track your project status.</p>
+
+  <div class="login-card">
+    <label for="codeInput">Your Client Code</label>
+    <div class="hint">Format: PCL-001 · Provided in your welcome email</div>
+    <div class="code-input-wrap">
+      <input type="text" id="codeInput" placeholder="PCL-000" maxlength="7"
+        onkeydown="if(event.key==='Enter') attemptLogin()"
+        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9\-]/g,'')" />
+      <button class="login-btn" onclick="attemptLogin()">Access →</button>
+    </div>
+    <div class="login-error" id="loginError">
+      ❌ That code wasn't found. Please check your welcome email for the correct Client Code, or contact us at hello@polaclip.com
+    </div>
+    <div class="login-help">
+      Don't have a code? You may still be on the free sample stage.<br/>
+      <a href="/submit.html">Request your free sample here</a> or
+      <a href="mailto:hello@polaclip.com">email us</a>.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     DASHBOARD
+══════════════════════════════ -->
+<div id="dashboard">
+<div class="wrapper">
+
+  <!-- Welcome Bar -->
+  <div class="welcome-bar">
+    <div class="welcome-left">
+      <h2>Hi, <span id="clientName">Client</span> 👋</h2>
+      <p>Client Code: <strong id="clientCodeDisplay">PCL-000</strong> · Active since <span id="clientSince">—</span></p>
+    </div>
+    <div class="pkg-pill" id="clientPkgPill">Growth Package</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" id="statClips">30</div>
+      <div class="stat-label">Clips / Month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">48h</div>
+      <div class="stat-label">Delivery Guarantee</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Revision Turnaround</div>
+    </div>
+  </div>
+
+  <!-- Status Tracker -->
+  <div class="status-track">
+    <div class="sec-head">
+      <div class="sec-title"><span class="dot"></span> Current Request Status</div>
+    </div>
+    <div id="statusTracker">
+      <!-- Filled by JS based on current status -->
+    </div>
+  </div>
+
+  <!-- ── VIDEO REQUEST FORM ── -->
+  <!-- Netlify form for client video requests -->
+  <form name="polaclip-client-request" method="POST" data-netlify="true"
+    netlify-honeypot="bot-field-cr" id="requestForm" novalidate>
+    <input type="hidden" name="form-name" value="polaclip-client-request"/>
+    <p style="display:none"><input name="bot-field-cr"/></p>
+    <!-- Hidden client fields (filled by JS) -->
+    <input type="hidden" name="clientCode" id="hClientCode"/>
+    <input type="hidden" name="clientName" id="hClientName"/>
+    <input type="hidden" name="clientPackage" id="hClientPackage"/>
+    <input type="hidden" name="requestRef" id="hRequestRef"/>
+
+    <div class="request-card">
+      <div class="request-head">
+        <div class="request-head-icon">🎬</div>
+        <div class="request-head-text">
+          <h3>Submit a New Video Request</h3>
+          <p>Submit any time — each request is delivered within 48 hours</p>
+        </div>
+      </div>
+
+      <div class="rfields">
+
+        <!-- Video Link -->
+        <div class="rfield">
+          <label for="videoLink">Video Link <span class="req">* required</span></label>
+          <div class="hint">
+            Paste your YouTube or Facebook URL — or a Google Drive / Dropbox / WeTransfer link.<br/>
+            Make sure it is set to <code>Anyone with link can view</code>.
+          </div>
+          <input type="url" id="videoLink" name="videoLink"
+            placeholder="https://youtube.com/watch?v=... or drive.google.com/..." required/>
+          <span class="errmsg" id="err-videoLink">Please paste your video link.</span>
+        </div>
+
+        <!-- Video Description -->
+        <div class="rfield">
+          <label for="videoDesc">What is this video about? <span class="req">* required</span></label>
+          <div class="hint">Brief description so our editor understands the content and context.</div>
+          <textarea id="videoDesc" name="videoDesc"
+            placeholder="e.g. A 30-minute coaching session about time management for entrepreneurs..." required></textarea>
+          <span class="errmsg" id="err-videoDesc">Please describe your video.</span>
+        </div>
+
+        <div class="two-col">
+          <!-- Video Length -->
+          <div class="rfield">
+            <label for="videoLength">Video Length <span class="req">* required</span></label>
+            <select id="videoLength" name="videoLength" required>
+              <option value="" disabled selected>Select length...</option>
+              <option>Under 10 minutes</option>
+              <option>10–20 minutes</option>
+              <option>20–40 minutes</option>
+              <option>40–60 minutes</option>
+              <option>Over 60 minutes</option>
+            </select>
+            <span class="errmsg" id="err-videoLength">Please select video length.</span>
+          </div>
+
+          <!-- Number of Clips -->
+          <div class="rfield">
+            <label for="numClips">How many clips? <span class="req">* required</span></label>
+            <div class="hint">How many short clips do you want from this one video?</div>
+            <input type="number" id="numClips" name="numClips"
+              placeholder="e.g. 5" min="1" max="70" required/>
+            <span class="errmsg" id="err-numClips">Please enter the number of clips.</span>
+          </div>
+        </div>
+
+        <!-- Clip Focus -->
+        <div class="rfield">
+          <label>Clip Focus — What moments to prioritize? <span class="req">* required</span></label>
+          <div class="roptions">
+            <label class="roption">
+              <input type="radio" name="clipFocus" value="Best moments — Pola Clip decides (recommended)" required/>
+              <span><strong>Let Pola Clip decide</strong> — we pick the most engaging and shareable moments</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="clipFocus" value="Opening hooks — strongest first points"/>
+              <span><strong>Opening hooks</strong> — the most powerful statements from the start</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="clipFocus" value="Key tips or advice moments"/>
+              <span><strong>Key tips or advice</strong> — practical moments your audience will save and share</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="clipFocus" value="Emotional or motivational moments"/>
+              <span><strong>Emotional or motivational</strong> — moments that connect deeply</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="clipFocus" value="Specific moments I will describe below"/>
+              <span><strong>Specific moments</strong> — I'll describe the exact parts I want below</span>
+            </label>
+          </div>
+          <span class="errmsg" id="err-clipFocus">Please select a focus option.</span>
+        </div>
+
+        <!-- Specific moments -->
+        <div class="rfield">
+          <label for="specificMoments">Describe specific moments <span class="opt">(optional — only if selected above)</span></label>
+          <div class="hint">Example: <code>"Around 8:30 I mention the 3-step framework — clip that."</code> or <code>"Clip the part starting at 22:15 about mindset."</code></div>
+          <textarea id="specificMoments" name="specificMoments"
+            placeholder="Timestamps or descriptions of specific moments you want clipped..."></textarea>
+        </div>
+
+        <!-- Target Platforms -->
+        <div class="rfield">
+          <label>Target Platforms for these clips <span class="req">* required</span></label>
+          <div class="hint">Select all platforms you plan to post these clips on.</div>
+          <div class="roptions" style="flex-direction: row; flex-wrap: wrap; gap: 8px;">
+            <label class="roption" style="flex:none; padding: 9px 14px;">
+              <input type="checkbox" name="platforms" value="YouTube Shorts"/>
+              <span>YouTube Shorts</span>
+            </label>
+            <label class="roption" style="flex:none; padding: 9px 14px;">
+              <input type="checkbox" name="platforms" value="Instagram Reels"/>
+              <span>Instagram Reels</span>
+            </label>
+            <label class="roption" style="flex:none; padding: 9px 14px;">
+              <input type="checkbox" name="platforms" value="TikTok"/>
+              <span>TikTok</span>
+            </label>
+            <label class="roption" style="flex:none; padding: 9px 14px;">
+              <input type="checkbox" name="platforms" value="Facebook Reels"/>
+              <span>Facebook Reels</span>
+            </label>
+            <label class="roption" style="flex:none; padding: 9px 14px;">
+              <input type="checkbox" name="platforms" value="All platforms"/>
+              <span>All platforms</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Caption Style -->
+        <div class="rfield">
+          <label>Caption Style for this request <span class="req">* required</span></label>
+          <div class="roptions">
+            <label class="roption">
+              <input type="radio" name="captionStyle" value="Same as before — keep my default style" required/>
+              <span><strong>Keep my default style</strong> — same as previous clips</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="captionStyle" value="Viral Bold — large colored text center screen"/>
+              <span><strong>Viral Bold</strong> — large colored text, center screen (TikTok/Reels style)</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="captionStyle" value="Standard — white text bottom of screen"/>
+              <span><strong>Standard</strong> — white text, bottom of screen</span>
+            </label>
+            <label class="roption">
+              <input type="radio" name="captionStyle" value="Highlight Style — key words highlighted"/>
+              <span><strong>Highlight Style</strong> — key words highlighted in color</span>
+            </label>
+          </div>
+          <span class="errmsg" id="err-captionStyle">Please select a caption style.</span>
+        </div>
+
+        <!-- Account / Branding Changes -->
+        <div class="rfield">
+          <label>Do you have any updates or changes to report? <span class="opt">(optional)</span></label>
+          <div class="hint">Select anything that has changed since your last request. Leave unchecked if nothing has changed.</div>
+          <div class="changes-grid">
+
+            <label class="change-item" id="ci-logo">
+              <input type="checkbox" name="change_logo" value="yes" onchange="toggleDetail('logoDetail', this)"/>
+              <div>
+                <div class="ci-label">🖼️ Logo Update</div>
+                <div class="ci-desc">I have a new logo I want used on future clips</div>
+              </div>
+            </label>
+            <div class="change-detail" id="logoDetail">
+              <input type="url" name="new_logo_link" placeholder="New logo file link (Google Drive PNG)..."/>
+            </div>
+
+            <label class="change-item">
+              <input type="checkbox" name="change_brandname" value="yes" onchange="toggleDetail('brandnameDetail', this)"/>
+              <div>
+                <div class="ci-label">✏️ Brand Name / Handle Change</div>
+                <div class="ci-desc">My channel name or social handle has changed</div>
+              </div>
+            </label>
+            <div class="change-detail" id="brandnameDetail">
+              <input type="text" name="new_brandname" placeholder="New brand name or handle (e.g. @NewChannelName)..."/>
+            </div>
+
+            <label class="change-item">
+              <input type="checkbox" name="change_colors" value="yes" onchange="toggleDetail('colorsDetail', this)"/>
+              <div>
+                <div class="ci-label">🎨 Brand Color Change</div>
+                <div class="ci-desc">I want to update the brand colors used in my clips</div>
+              </div>
+            </label>
+            <div class="change-detail" id="colorsDetail">
+              <input type="text" name="new_colors" placeholder="New brand colors (e.g. #FF5733 and #FFFFFF or describe)..."/>
+            </div>
+
+            <label class="change-item">
+              <input type="checkbox" name="change_email" value="yes" onchange="toggleDetail('emailDetail', this)"/>
+              <div>
+                <div class="ci-label">📧 Email Address Change</div>
+                <div class="ci-desc">Please send future deliveries to a different email</div>
+              </div>
+            </label>
+            <div class="change-detail" id="emailDetail">
+              <input type="text" name="new_email" placeholder="New email address..."/>
+            </div>
+
+            <label class="change-item">
+              <input type="checkbox" name="change_social" value="yes" onchange="toggleDetail('socialDetail', this)"/>
+              <div>
+                <div class="ci-label">🔗 Social Media Links Update</div>
+                <div class="ci-desc">My YouTube, Instagram, TikTok or other links have changed</div>
+              </div>
+            </label>
+            <div class="change-detail" id="socialDetail">
+              <textarea name="new_social_links" placeholder="New social media links (one per line)..."></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Special Instructions -->
+        <div class="rfield">
+          <label for="specialNotes">Special Instructions for this request <span class="opt">(optional)</span></label>
+          <div class="hint">Anything specific about this particular video or batch of clips. Example: <code>"Don't clip the sponsor segment (8:00–10:30)"</code> or <code>"Use a faster edit pace for this one."</code></div>
+          <textarea id="specialNotes" name="specialNotes"
+            placeholder="Any special notes or instructions for this specific request..."></textarea>
+        </div>
+
+      </div><!-- end rfields -->
+
+      <div class="submit-bar">
+        <div class="submit-info">
+          <strong>48-hour delivery guaranteed.</strong><br/>
+          We'll notify you by email when your clips are ready.
+        </div>
+        <button type="submit" class="submit-btn" id="reqSubmitBtn">
+          🚀 Submit Request
+        </button>
+      </div>
+    </div><!-- end request-card -->
+  </form>
+
+  <!-- Request History (Static display — update manually) -->
+  <div class="history-card">
+    <div class="history-head">📋 Recent Requests</div>
+    <div id="historyList">
+      <div class="no-active" style="padding:20px; text-align:center; color:var(--muted); font-size:14px;">
+        Your request history will appear here after your first submission.
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Panel -->
+  <div class="info-panel">
+    <strong>Need help or have a question?</strong><br/>
+    📧 Email us: <strong>hello@polaclip.com</strong><br/>
+    📱 WhatsApp: <strong>[Your WhatsApp Link]</strong><br/>
+    💬 Telegram: <strong>t.me/polaclip</strong><br/><br/>
+    <strong>Revision requests:</strong> Reply directly to your delivery email with your revision notes — we'll have updates within 24 hours. Do not submit a new request form for revisions.
+  </div>
+
+</div><!-- end wrapper -->
+</div><!-- end dashboard -->
+
+<!-- Success Overlay -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="s-icon">✅</div>
+    <h2>Request <span>Submitted!</span></h2>
+    <p>We've received your video request and will begin immediately. Your clips will be delivered to your email within <strong>48 hours</strong>.</p>
+    <div class="ref-box" id="successRef">REF: PCL-000-00000</div>
+    <p style="margin-bottom:16px; font-size:13px;">Save this reference number. We'll include it in your delivery email so you can match requests easily.</p>
+    <button class="close-success" onclick="closeSuccess()">Back to Dashboard</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// CLIENT REGISTRY
+// ── HOW TO ADD NEW CLIENTS ──
+// When a new client pays and is onboarded, add them here:
+// 'PCL-XXX': { name: 'First Name', package: 'Package Name', clips: 30, since: 'Jun 2026' }
+// Save the file and push to GitHub. Netlify redeploys in 1-2 minutes.
+// ══════════════════════════════════════════════════════
+const CLIENTS = {
+  // FORMAT: 'PCL-XXX': { name, package, clips, since }
+  // Add your clients below this line:
+  // 'PCL-001': { name: 'John', package: 'Growth Package', clips: 30, since: 'Jun 2026' },
+  // 'PCL-002': { name: 'Sarah', package: 'Starter Package', clips: 12, since: 'Jun 2026' },
+  // 'PCL-003': { name: 'Mike', package: 'Pro Package', clips: 70, since: 'Jul 2026' },
+};
+
+// ══════════════════════════════════════════════════════
+// STATUS STAGES (update per client as needed)
+// Current active status for each client:
+// 0=Received, 1=Processing, 2=Editing, 3=Review, 4=Delivered
+// ══════════════════════════════════════════════════════
+const CLIENT_STATUS = {
+  // 'PCL-001': { stage: 2, videoTitle: 'Podcast Ep. 45' },
+  // 'PCL-002': { stage: 4, videoTitle: 'Coaching Session' },
+};
+
+const STATUS_STAGES = [
+  { label: 'Request\nReceived', emoji: '📥' },
+  { label: 'Processing\nBrief',  emoji: '📋' },
+  { label: 'In\nEditing',        emoji: '✂️' },
+  { label: 'Quality\nReview',    emoji: '👀' },
+  { label: 'Clips\nDelivered',   emoji: '✅' },
+];
+
+let currentClient = null;
+
+function attemptLogin() {
+  const code = document.getElementById('codeInput').value.trim().toUpperCase();
+  const input = document.getElementById('codeInput');
+  const errEl = document.getElementById('loginError');
+
+  input.classList.remove('error');
+  errEl.classList.remove('show');
+
+  if (!code) {
+    input.classList.add('error');
+    return;
+  }
+
+  const client = CLIENTS[code];
+  if (!client) {
+    input.classList.add('error');
+    errEl.classList.add('show');
+    return;
+  }
+
+  // Success — log in
+  currentClient = { code, ...client };
+  sessionStorage.setItem('pcl_code', code);
+  showDashboard(currentClient);
+}
+
+function showDashboard(client) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').classList.add('show');
+
+  // Nav updates
+  document.getElementById('clientBadge').textContent = client.code;
+  document.getElementById('clientBadge').classList.add('show');
+  document.getElementById('logoutBtn').classList.add('show');
+
+  // Welcome bar
+  document.getElementById('clientName').textContent = client.name;
+  document.getElementById('clientCodeDisplay').textContent = client.code;
+  document.getElementById('clientSince').textContent = client.since || '—';
+  document.getElementById('clientPkgPill').textContent = client.package;
+
+  // Stats
+  document.getElementById('statClips').textContent = client.clips;
+
+  // Hidden form fields
+  document.getElementById('hClientCode').value = client.code;
+  document.getElementById('hClientName').value = client.name;
+  document.getElementById('hClientPackage').value = client.package;
+
+  // Status tracker
+  renderStatus(client.code);
+
+  window.scrollTo({ top: 0 });
+}
+
+function renderStatus(code) {
+  const status = CLIENT_STATUS[code];
+  const container = document.getElementById('statusTracker');
+
+  if (!status) {
+    container.innerHTML = `
+      <div class="no-active">
+        <span>🎬</span>
+        No active request at the moment.<br/>
+        Submit a new video request below and we'll begin within 2 hours.
+      </div>`;
+    return;
+  }
+
+  const activeStage = status.stage;
+  let html = `
+    <div style="font-size:12px; color:var(--muted); margin-bottom:14px;">
+      Current request: <strong style="color:var(--text)">${status.videoTitle || 'Your video'}</strong>
+    </div>
+    <div class="track-steps">`;
+
+  STATUS_STAGES.forEach((s, i) => {
+    const isDone   = i < activeStage;
+    const isActive = i === activeStage;
+    const dotClass = isDone ? 'done' : isActive ? 'active' : 'pending';
+    const labelClass = isDone ? 'done' : isActive ? 'active' : '';
+    const labelText = s.label.replace('\n', '<br/>');
+
+    html += `<div class="track-step">
+      <div class="track-dot-row">
+        <div class="track-dot ${dotClass}">${isDone ? '✓' : s.emoji}</div>
+        ${i < STATUS_STAGES.length - 1 ? `<div class="track-line ${isDone ? 'done' : ''}"></div>` : ''}
+      </div>
+      <div class="track-label ${labelClass}">${labelText}</div>
+    </div>`;
+  });
+
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function toggleDetail(id, checkbox) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('show', checkbox.checked);
+}
+
+function logout() {
+  sessionStorage.removeItem('pcl_code');
+  currentClient = null;
+  document.getElementById('dashboard').classList.remove('show');
+  document.getElementById('loginScreen').style.display = '';
+  document.getElementById('clientBadge').classList.remove('show');
+  document.getElementById('logoutBtn').classList.remove('show');
+  document.getElementById('codeInput').value = '';
+}
+
+// Check session on load
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = sessionStorage.getItem('pcl_code');
+  if (saved && CLIENTS[saved]) {
+    currentClient = { code: saved, ...CLIENTS[saved] };
+    showDashboard(currentClient);
+  }
+});
+
+// Form validation and submission
+document.getElementById('requestForm').addEventListener('submit', function(e) {
+  let valid = true;
+
+  // Clear errors
+  document.querySelectorAll('.errmsg').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('input.err, textarea.err').forEach(el => el.classList.remove('err'));
+
+  const videoLink = document.getElementById('videoLink');
+  if (!videoLink.value.trim()) {
+    videoLink.classList.add('err');
+    document.getElementById('err-videoLink').classList.add('show');
+    valid = false;
+  }
+
+  const videoDesc = document.getElementById('videoDesc');
+  if (!videoDesc.value.trim()) {
+    videoDesc.classList.add('err');
+    document.getElementById('err-videoDesc').classList.add('show');
+    valid = false;
+  }
+
+  const videoLength = document.getElementById('videoLength');
+  if (!videoLength.value) {
+    videoLength.classList.add('err');
+    document.getElementById('err-videoLength').classList.add('show');
+    valid = false;
+  }
+
+  const numClips = document.getElementById('numClips');
+  if (!numClips.value || numClips.value < 1) {
+    numClips.classList.add('err');
+    document.getElementById('err-numClips').classList.add('show');
+    valid = false;
+  }
+
+  if (!document.querySelector('input[name="clipFocus"]:checked')) {
+    document.getElementById('err-clipFocus').classList.add('show');
+    valid = false;
+  }
+
+  if (!document.querySelector('input[name="captionStyle"]:checked')) {
+    document.getElementById('err-captionStyle').classList.add('show');
+    valid = false;
+  }
+
+  if (!valid) {
+    const firstErr = document.querySelector('.errmsg.show, .err');
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return e.preventDefault();
+  }
+
+  // Generate request reference
+  const ref = currentClient.code + '-' + Date.now().toString().slice(-5);
+  document.getElementById('hRequestRef').value = ref;
+  document.getElementById('successRef').textContent = 'REF: ' + ref;
+
+  // For local testing (no Netlify)
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    e.preventDefault();
+    showSuccess();
+    return;
+  }
+
+  // Netlify handles submission — show success after
+  const btn = document.getElementById('reqSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  // After Netlify processes, show success
+  // (Add ?submitted=true to netlify success URL for this form)
+  setTimeout(showSuccess, 1200);
+  e.preventDefault(); // Remove this line when deploying to Netlify
+  // On real Netlify: remove the setTimeout + e.preventDefault() above
+  // and let form submit naturally. Set success URL to /client-portal.html?submitted=true
+});
+
+function showSuccess() {
+  document.getElementById('successOverlay').classList.add('show');
+  document.getElementById('requestForm').reset();
+  document.getElementById('reqSubmitBtn').disabled = false;
+  document.getElementById('reqSubmitBtn').textContent = '🚀 Submit Request';
+  // Clear caption/focus selections
+  document.querySelectorAll('#requestForm input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('.change-detail').forEach(d => d.classList.remove('show'));
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Handle Netlify success redirect
+if (window.location.search.includes('submitted=true')) {
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = sessionStorage.getItem('pcl_code');
+    if (saved && CLIENTS[saved]) {
+      const ref = saved + '-DONE';
+      document.getElementById('successRef').textContent = 'REF: ' + ref;
+      showSuccess();
+    }
+  });
+}
+</script>
+</body>
+</html>
