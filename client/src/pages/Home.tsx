@@ -121,7 +121,7 @@ export default function Home() {
             <div className="space-y-8">
               <div>
                 <h1 className="text-5xl lg:text-6xl font-bold font-poppins text-foreground leading-tight mb-4">
-                  Turn Your Long Videos Into <span className="text-primary">Viral Short Clips</span> — Done For You
+                  Tu Your Long Videos Into <span className="text-primary">Viral Short Clips</span> — Done For You
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
                   We repurpose your YouTube, Facebook and Instagram videos into ready-to-post Reels, Shorts & TikToks.
