@@ -139,7 +139,7 @@ export default function Portfolio() {
             href="/#pricing"
             className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors"
           >
-            Request Your Sample
+            Request Your Free Sample
           </a>
         </div>
       </section>
