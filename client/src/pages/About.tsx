@@ -199,11 +199,11 @@ export default function About() {
           <p className="text-xl text-white/90 mb-8">
             Start your journey to more views, more engagement, and more growth.
           </p>
-          <Link href="/#pricing">
+          <a href="https://polaclip.com/submit" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold">
-              Request Your Sample
+              Request Your Free Sample
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
 

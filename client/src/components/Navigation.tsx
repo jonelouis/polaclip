@@ -38,11 +38,11 @@ export default function Navigation() {
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Link href="/#pricing">
+          <a href="https://polaclip.com/client-portal">
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Get Started
+              Client Portal
             </Button>
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}

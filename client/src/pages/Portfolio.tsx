@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import { ExternalLink } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Portfolio() {
   const portfolioItems = [
@@ -135,12 +136,11 @@ export default function Portfolio() {
           <p className="text-xl text-white/90 mb-8">
             Let's create viral clips from your videos and grow your audience.
           </p>
-          <a
-            href="/#pricing"
-            className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors"
-          >
-            Request Your Free Sample
-          </a>
+          <Link href="/#pricing">
+            <a className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors">
+              Request Your Free Sample
+            </a>
+          </Link>
         </div>
       </section>
 
@@ -149,15 +149,15 @@ export default function Portfolio() {
         <div className="container mx-auto text-center">
           <p className="mb-4">© 2026 Pola Clip. All rights reserved.</p>
           <div className="flex justify-center gap-6 text-sm">
-            <a href="/" className="hover:text-primary transition-colors">
-              Home
-            </a>
-            <a href="/#pricing" className="hover:text-primary transition-colors">
-              Pricing
-            </a>
-            <a href="/contact" className="hover:text-primary transition-colors">
-              Contact
-            </a>
+            <Link href="/">
+              <a className="hover:text-primary transition-colors">Home</a>
+            </Link>
+            <Link href="/#pricing">
+              <a className="hover:text-primary transition-colors">Pricing</a>
+            </Link>
+            <Link href="/contact">
+              <a className="hover:text-primary transition-colors">Contact</a>
+            </Link>
           </div>
         </div>
       </footer>

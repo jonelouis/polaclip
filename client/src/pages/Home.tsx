@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
-import { Play, Zap, Scissors, Rocket, MessageCircle } from "lucide-react";
+import { Play, Zap, Scissors, Rocket } from "lucide-react";
 import { Check } from "lucide-react";
 
 export default function Home() {
@@ -246,7 +246,7 @@ export default function Home() {
               <div className="text-2xl text-primary font-bold mt-1">✓</div>
               <div>
                 <h3 className="font-bold text-foreground mb-1">Multiple payment options</h3>
-                <p className="text-muted-foreground text-sm">Crypto, Wise, Ko-fi & more</p>
+                <p className="text-muted-foreground text-sm">Crypto, Cards, Wise, Payoneer & more</p>
               </div>
             </div>
 
@@ -313,25 +313,19 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Contact Buttons */}
-                  <div className="space-y-3 mb-8">
+                  {/* Contact Button */}
+                  <div className="mb-8">
                     <a
-                      href="https://wa.me/1234567890?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample%20for%20the%20{pkg.name}%20package"
+                      href="https://polaclip.com/submit"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white hover:bg-primary/90 font-bold py-3 px-4 rounded-lg transition-colors"
+                      className={`w-full inline-flex items-center justify-center font-bold py-3 px-4 rounded-lg transition-colors ${
+                        pkg.featured
+                          ? "bg-primary text-white hover:bg-primary/90"
+                          : "bg-foreground text-white hover:bg-foreground/90"
+                      }`}
                     >
-                      <MessageCircle className="w-5 h-5" />
-                      WhatsApp Sample
-                    </a>
-                    <a
-                      href="https://t.me/polaclip?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample%20for%20the%20{pkg.name}%20package"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-foreground text-white hover:bg-foreground/90 font-bold py-3 px-4 rounded-lg transition-colors"
-                    >
-                      <MessageCircle className="w-5 h-5" />
-                      Telegram Sample
+                      Request Free Sample
                     </a>
                   </div>
 
@@ -427,11 +421,11 @@ export default function Home() {
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Start with a free sample. No commitment, no payment upfront. Just quality clips.
           </p>
-          <Link href="#pricing">
+          <a href="https://polaclip.com/submit" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold text-lg">
               Request Your Free Sample
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
 

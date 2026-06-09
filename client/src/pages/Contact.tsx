@@ -15,7 +15,7 @@ export default function Contact() {
             Get In <span className="text-primary">Touch</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions? Want to request a sample? We're here to help via WhatsApp or Telegram.
+            Have questions? Want to get support? We're here to help via Email, WhatsApp, or Telegram.
           </p>
         </div>
       </section>
@@ -55,7 +55,7 @@ export default function Contact() {
               <div className="flex-1">
                 <h3 className="font-bold text-foreground mb-1">WhatsApp</h3>
                 <p className="text-sm text-muted-foreground mb-3">
-                  Chat with us directly for quick responses and sample requests
+                  Chat with us directly for quick responses
                 </p>
                 <a
                   href="https://wa.me/1234567890?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
@@ -77,7 +77,7 @@ export default function Contact() {
               <div className="flex-1">
                 <h3 className="font-bold text-foreground mb-1">Telegram</h3>
                 <p className="text-sm text-muted-foreground mb-3">
-                  Connect with us on Telegram for instant messaging and file sharing
+                  Connect with us on Telegram for instant messaging
                 </p>
                 <a
                   href="https://t.me/polaclip?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
@@ -109,9 +109,9 @@ export default function Contact() {
                 </div>
               </div>
               <div>
-                <h3 className="font-bold text-foreground mb-1">Contact Us</h3>
+                <h3 className="font-bold text-foreground mb-1">Request Sample</h3>
                 <p className="text-muted-foreground">
-                  Click WhatsApp or Telegram above and send us a message with your long video link or file.
+                  Click Request Free Sample and fill the form with your long video link or file.
                 </p>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function Contact() {
               <div>
                 <h3 className="font-bold text-foreground mb-1">Share Your Video</h3>
                 <p className="text-muted-foreground">
-                  Send us your YouTube/Facebook/Instagram link or upload your video via Google Drive or our secure link.
+                  Send us your YouTube/Facebook/Instagram link or upload your video.
                 </p>
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function Contact() {
               <div>
                 <h3 className="font-bold text-foreground mb-1">We Create Your Sample</h3>
                 <p className="text-muted-foreground">
-                  Our team will create 1 professional sample clip within 48 hours and deliver it via WhatsApp or Telegram.
+                  Our team will create 1 professional sample clip within 48 hours and deliver it via Email.
                 </p>
               </div>
             </div>
@@ -167,7 +167,7 @@ export default function Contact() {
               <div>
                 <h3 className="font-bold text-foreground mb-1">Payment & Start</h3>
                 <p className="text-muted-foreground">
-                  Once satisfied, we'll send you payment details (crypto, Wise, Ko-fi). After payment, your subscription begins immediately.
+                  Once satisfied, we'll send you payment details. After payment, your subscription begins immediately.
                 </p>
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function Contact() {
                 Can I request revisions to the sample?
               </h3>
               <p className="text-muted-foreground">
-                Absolutely! If you'd like adjustments to the sample, just let us know via WhatsApp or Telegram and we'll revise it.
+                Absolutely! If you'd like adjustments to the sample, just let us know and we'll revise it.
               </p>
             </div>
 
@@ -215,7 +215,7 @@ export default function Contact() {
                 What payment methods do you accept?
               </h3>
               <p className="text-muted-foreground">
-                We accept cryptocurrency, Wise transfers, Ko-fi donations, and other payment methods. We'll discuss options that work best for you.
+                We accept Cryptocurrency, Cards, Payoneer transfers and other payment methods. We'll discuss options that work best for you.
               </p>
             </div>
 
@@ -240,24 +240,14 @@ export default function Contact() {
           <p className="text-xl text-white/90 mb-8">
             Request your free sample today and see what we can do for your videos.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <a
               href="https://wa.me/1234567890?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-primary hover:bg-white/90 font-bold py-3 px-8 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center bg-white text-primary hover:bg-white/90 font-bold py-3 px-8 rounded-lg transition-colors"
             >
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp Us
-            </a>
-            <a
-              href="https://t.me/polaclip?text=Hi%20Pola%20Clip!%20I%20want%20to%20request%20a%20sample"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white/20 text-white hover:bg-white/30 font-bold py-3 px-8 rounded-lg transition-colors border border-white/50"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Telegram Us
+              Request Your Free Sample
             </a>
           </div>
         </div>
