@@ -1,10 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -57,8 +68,8 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-border bg-white">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden fixed inset-x-0 top-16 bottom-0 bg-white z-50 overflow-y-auto border-t border-border">
+          <div className="container mx-auto px-4 py-4 flex flex-col gap-4 min-h-full">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <a
@@ -69,11 +80,11 @@ export default function Navigation() {
                 </a>
               </Link>
             ))}
-            <Link href="/#pricing">
+            <a href="https://polaclip.com/client-portal">
               <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Get Started
+                Client Portal
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       )}
