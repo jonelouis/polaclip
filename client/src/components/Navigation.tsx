@@ -27,7 +27,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white border-b border-border z-50">
+    <nav className={`fixed top-0 left-0 right-0 bg-white border-b border-border z-50${isOpen ? " min-h-dvh" : ""}`}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
@@ -68,8 +68,8 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden fixed inset-x-0 top-16 bottom-0 bg-white z-50 overflow-y-auto border-t border-border">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-4 min-h-full">
+        <div className="md:hidden border-t border-border bg-white">
+          <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <a
