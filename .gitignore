@@ -2,40 +2,21 @@
 node_modules/
 .pnpm-store/
 
-# Build outputs
-dist/
-build/
-*.dist
-
-# Generated files
-*.tsbuildinfo
-coverage/
-
-# Package files
-package-lock.json
-pnpm-lock.yaml
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
+# Build output
+/dist/
+/build/
 
 # Logs
 *.log
+npm-debug.log*
+pnpm-debug.log*
 
-# IDE files
+# Editor / OS files
 .vscode/
 .idea/
-
-# OS files
 .DS_Store
 Thumbs.db
 
-# Server/Backend (keep only public folder for static hosting)
-server/
-drizzle/
-shared/
-vitest.config.ts
-vite.config.ts
-tsconfig.json
-client/
+# Temporary / generated files
+*.tmp
+*.swp
